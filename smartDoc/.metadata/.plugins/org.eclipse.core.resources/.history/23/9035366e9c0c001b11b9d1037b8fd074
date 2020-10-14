@@ -1,0 +1,5 @@
+package com.ts.dto;
+
+public class Department {
+
+}
