@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 
@@ -23,8 +27,7 @@ public class Patient {
 	@JoinColumn(name="doctorId")
 	private Doctor doctor;
 	@OneToMany
-	@JoinColumn(name="departmentId")
-	private Department department;
+	private Set<Department> empList =new HashSet<Department>();
 	
 	public int getPatientId() {
 		return patientId;

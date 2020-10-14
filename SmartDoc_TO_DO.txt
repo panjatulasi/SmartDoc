@@ -1,0 +1,51 @@
+HOME PAGE
+1. Patient     2.Hospital
+
+1.Patient
+   ->Register
+   ->LOGIN
+      ->Appointment
+               
+      ->Virtual Meet
+      
+     ->Medicines Buying
+ 
+     ->UPDATE
+     ->LOGOUT
+     ->NOTIFICATION(TEMPoRARY) if DELAY
+     ->NOTIFICATION(befor intake of tablets and before appointment) (optional if patient wants)
+
+
+2.HOSPITAL
+     
+  ->DOCTOR
+        ->REGISTER
+        ->Login
+       ->Patients History (previos records)
+       ->Update(medicines And problem and intake of medicines(time))
+       ->NOTIFICTION
+       ->VIRTUAL MEET
+       ->UPDATE
+       ->DELETE
+       ->LOGOUT
+
+
+   ->Assistant
+        ->He can create accounts for patients (if needed)
+        ->He can schedule appointments if delay
+        ->Appointment timings
+        ->Update
+        ->delete
+        ->LogOUT
+
+    ->Pharmacist
+            ->Sold medicines(decrease in product count)
+            ->ADD New products
+            ->Billing
+            ->Receives medicines notification from DOCTOR( sends Patient ID Along with medicines)
+            -> NOTIFICATION (if products about to complete and on Expire)
+            ->Update
+            ->delete
+          ->LogOUT
+
+

@@ -70,16 +70,16 @@ public class HibernateTemplate {
 		return obj;
 	}
 	
-	public static Object getObjectByUserPass(Object obj,String loginId,String password) {
-	
-	String queryString = "from "+obj+" where email = :loginId and password =:password";
-	  Query query = sessionFactory.openSession().createQuery(queryString);
-	  query.setString("loginId", loginId);
-	  query.setString("password", password);
-	  Object queryResult = query.uniqueResult();
-	  Object person = (Object)queryResult;
-	  return person; 
-	}
+	public static Object getObjectByUserPass(String loginId,String password) {
+		
+		String queryString = "from Patient where email = :loginId and password =:password";
+		  Query query = sessionFactory.openSession().createQuery(queryString);
+		  query.setString("loginId", loginId);
+		  query.setString("password", password);
+		  Object queryResult = query.uniqueResult();
+		  Patient patient = (Patient)queryResult;
+		  return patient; 
+		}
 	/*public static Object getObjectByEmail(String email) {
 		
 		String queryString = "from Employee where email = :email";
