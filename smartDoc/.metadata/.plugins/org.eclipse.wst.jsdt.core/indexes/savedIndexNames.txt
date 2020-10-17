@@ -2,7 +2,6 @@ INDEX VERSION 1.3+C:\Users\panja\Desktop\smartDoc\.metadata\.plugins\org.eclipse
 3820325056.index
 2708232978.index
 1601906583.index
-1587980155.index
 2632002461.index
 437890370.index
 3297390043.index

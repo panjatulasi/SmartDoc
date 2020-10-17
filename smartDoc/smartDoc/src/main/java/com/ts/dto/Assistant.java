@@ -1,5 +1,9 @@
 package com.ts.dto;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 @XmlRootElement
 @Entity
@@ -12,12 +16,15 @@ public class Assistant {
 	private String doctorUserName;
 	private String mobileNumber;
 	private String password;
-	@OneToMany
-	@JoinColumn(name="patientId")
-	private Patient patient;
-	@OneToOne
-	@JoinColumn(name="doctorId")
-	private Doctor doctor;
+	
+	//@OneToMany
+	//@JoinColumn(name="patientId")
+	//private Set<Patient> patientList =new HashSet<Patient>();
+	
+	//@OneToOne
+	//@JoinColumn(name="doctorId")
+	//private Doctor doctor;
+	
 	public int getAssistantId() {
 		return assistantId;
 	}

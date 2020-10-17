@@ -19,7 +19,7 @@ public class PatientDao {
 		return HibernateTemplate.addObject(patient);
 	}
 public static Object getPatientByUserPass(String loginId,String password) {
-		
+		System.out.println("Inside Patient loginId:"+loginId+"Passord"+password);
 		String queryString = "from Patient where userName = :loginId and password =:password";
 		  Query query = sessionFactory.openSession().createQuery(queryString);
 		  query.setString("loginId", loginId);

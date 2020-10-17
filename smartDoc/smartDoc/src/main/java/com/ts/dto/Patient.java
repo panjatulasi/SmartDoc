@@ -23,11 +23,12 @@ public class Patient {
 	private String gender;
 	private String mobileNumber;
 	private String password;
-	@ManyToOne
-	@JoinColumn(name="doctorId")
-	private Doctor doctor;
-	@OneToMany
-	private Set<Department> empList =new HashSet<Department>();
+	//@ManyToOne
+	//@JoinColumn(name="doctorId")
+	//private Doctor doctor;
+	
+	//@OneToMany 
+	//private Set<Department> deptList =new HashSet<Department>();
 	
 	public int getPatientId() {
 		return patientId;

@@ -7,12 +7,14 @@ public class Department {
 	@Id@GeneratedValue
 	private int departmentId;
 	private String departmentName;
-	@ManyToOne
-	@JoinColumn(name="patientId")
-	private Patient patient;
-	@OneToOne
-	@JoinColumn(name="doctorId")
-	private Doctor doctor;
+	//@ManyToOne
+	//@JoinColumn(name="patientId")
+	//private Patient patient;
+	
+	//@OneToOne
+	//@JoinColumn(name="doctorId")
+	//private Doctor doctor;
+	
 	public int getDepartmentId() {
 		return departmentId;
 	}

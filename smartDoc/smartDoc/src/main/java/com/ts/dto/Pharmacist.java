@@ -10,9 +10,10 @@ public class Pharmacist {
 	private String userName;
 	private String mobileNumber;
 	private String password;
-	@ManyToOne
-	@JoinColumn(name="doctorId")
-	private Doctor doctor;
+//	@ManyToOne
+//	@JoinColumn(name="doctorId")
+//	private Doctor doctor;
+	
 	public int getPharmacistId() {
 		return pharmacistId;
 	}
