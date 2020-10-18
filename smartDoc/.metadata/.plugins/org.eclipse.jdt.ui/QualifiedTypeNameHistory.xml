@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.xml.bind.annotation.XmlRootElement"/>
+<fullyQualifiedTypeName name="javax.ws.rs.PathParam"/>
+<fullyQualifiedTypeName name="com.ts.dao.PatientDao"/>
+<fullyQualifiedTypeName name="com.ts.dto.Patient"/>
+<fullyQualifiedTypeName name="com.ts.dao.DoctorDao"/>
+<fullyQualifiedTypeName name="com.ts.dto.Doctor"/>
+<fullyQualifiedTypeName name="com.ts.dto.Pharmacist"/>
+<fullyQualifiedTypeName name="com.ts.dao.PharmacistDao"/>
+<fullyQualifiedTypeName name="com.ts.dao.AssistantDao"/>
+<fullyQualifiedTypeName name="com.ts.dto.Assistant"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="java.util.HashSet"/>
+<fullyQualifiedTypeName name="javax.ws.rs.POST"/>
+</qualifiedTypeNameHistroy>

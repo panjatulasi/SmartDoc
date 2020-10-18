@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<title>SmartDoc</title>
+
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <h1><b>Patient Registration</b></h1>
+            <form  #registerForm="ngForm"  (ngSubmit)="register()">
+                <input type="text" style="margin-top: 20px;" class="fadeIn second" placeholder="Name" name="patientName" [(ngModel)]='patient.patientName'>
+                <input type="text" style="margin-top: 15px;" class="fadeIn second" placeholder="Username" name="userName" [(ngModel)]='patient.userName'>
+                <input type="text" style="margin-top: 15px;" class="fadeIn second" placeholder="Phone Number" name="patientPhoneNumber" [(ngModel)]='patient.mobileNumber'>
+                <input type="text" style="margin-top: 15px;" class="fadeIn second" placeholder="Age" name="patientAge" [(ngModel)]='patient.age'>
+                <input type="text" style="margin-top: 15px;" class="fadeIn second" placeholder="Gender" name="patientGender" [(ngModel)]='patient.gender'>
+                <input type="password" style="margin-top: 15px;" class="fadeIn second" placeholder="Password" name="patientPassword" [(ngModel)]='patient.password'>
+                <input type="password" style="margin-top: 15px;" class="fadeIn second" placeholder="Confirm Password" name="patientConfirmPassword">
+                <input type="submit" style="margin-top: 35px;" class="fadeIn fourth" value="Register">
+            </form>
+
+            <div id="formFooter">
+                <a routerLink="patient-login">Login?</a>
+            </div>
+
+        </div>
+    </div>
+</body>
