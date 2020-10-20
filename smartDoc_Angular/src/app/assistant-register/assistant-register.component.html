@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<title>SmartDoc</title>
+
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <h1><b>Assistant Registration</b></h1>
+            <form #registerForm="ngForm" (ngSubmit)="register()">
+                <input type="text" style="margin-top: 20px;" class="fadeIn second" placeholder="Name" name="assistantName" [(ngModel)]='assistant.assistantName'>
+                <input type="text" style="margin-top: 15px;" class="fadeIn second" placeholder="Username" name="assistantUsername" [(ngModel)]='assistant.userName'>
+                <input type="text" style="margin-top: 15px;" class="fadeIn second" placeholder="Phone Number" name="assistantPhoneNumber" [(ngModel)]='assistant.mobileNumber'>
+                <input type="text" style="margin-top: 15px;" class="fadeIn second" placeholder="Doctor Username" name="doctorUserName" [(ngModel)]='assistant.doctorUserName'>
+                <input type="password" style="margin-top: 15px;" class="fadeIn second" placeholder="Password" name="assistantPassword" [(ngModel)]='assistant.password'>
+                <input type="password" style="margin-top: 15px;" class="fadeIn second" placeholder="Confirm Password" name="assistantConfirmPassword" >
+                <input type="submit" style="margin-top: 35px;" class="fadeIn fourth" value="Register">
+            </form>
+
+            <div id="formFooter">
+                <a routerLink="assistant-login">Login?</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script> 
+    function checkPassword(form) { 
+
+        assistantPassword = form.assistantPassword.value; 
+
+        assistantConfirmPassword = form.assistantConfirmPassword.value; 
+        if (assistantPassword != assistantConfirmPassword) { 
+
+            alert ("\nPassword did not match: Please try again...") 
+
+            return false; 
+
+        } 
+        else {
+
+        return true;
+        }
+    }
+</script>
