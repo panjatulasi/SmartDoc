@@ -24,8 +24,10 @@ export class PatientLoginComponent implements OnInit {
       if(result === null){
         alert('Invalid Credentials');
       }
-      else
-      alert('Valid Credentials');
+      else {
+        localStorage.setItem('userName',loginForm.userName);
+        this.router.navigate(['common-login']);
+      }
     })
 
   }

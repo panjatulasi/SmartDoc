@@ -14,16 +14,23 @@ import { DoctorRegisterComponent } from './doctor-register/doctor-register.compo
 import { PharmacistRegisterComponent } from './pharmacist-register/pharmacist-register.component';
 import { PharmacistLoginComponent } from './pharmacist-login/pharmacist-login.component';
 import { HomeComponent } from './home/home.component';
+import { HospitalLoginComponent } from './hospital-login/hospital-login.component';
+import { HospitalRelatedComponent } from './hospital-related/hospital-related.component';
+import { CommonLoginComponent } from './common-login/common-login.component';
 
 const appRoot: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'patient-login', component: PatientLoginComponent},
-  {path: 'pharmacist-login', component: PharmacistLoginComponent},
-  {path: 'doctor-login', component: DoctorLoginComponent},
-  {path: 'assistant-login', component: AssistantLoginComponent},
+  {path: 'hospital-related/pharmacist-login', component: PharmacistLoginComponent},
+  {path: 'hospital-related/doctor-login', component: DoctorLoginComponent},
+  {path: 'hospital-related/assistant-login', component: AssistantLoginComponent},
   {path: 'patient-register', component: PatientRegisterComponent},
-  {path: 'pharmacist-register', component: PharmacistRegisterComponent},
-  {path: 'doctor-register', component: DoctorRegisterComponent},
-  {path: 'assistant-register', component: AssistantRegisterComponent},
+  {path: 'hospital-related/pharmacist-register', component: PharmacistRegisterComponent},
+  {path: 'hospital-related/doctor-register', component: DoctorRegisterComponent},
+  {path: 'hospital-related/assistant-register', component: AssistantRegisterComponent},
+  {path: 'hospital-related', component: HospitalRelatedComponent},
+  {path: 'common-login',component: CommonLoginComponent},
+
 
 
 ];
@@ -39,6 +46,9 @@ const appRoot: Routes = [
     PharmacistRegisterComponent,
     PharmacistLoginComponent,
     HomeComponent,
+    HospitalLoginComponent,
+    HospitalRelatedComponent,
+    CommonLoginComponent,
   ],
   imports: [
 

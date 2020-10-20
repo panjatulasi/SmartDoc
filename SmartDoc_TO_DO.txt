@@ -4,7 +4,12 @@ HOME PAGE
 1.Patient
    ->Register
    ->LOGIN
-      ->Appointment
+      ->Appointment -> all the values will be stored in local storage(department(drop-down),problem,available timings(able tp mention free times of the patient))
+                    -> after booking appointment stores in local storage and sends to assistant if confirms then stores in appointment table this date links to prescription table
+
+
+      ->Prescription -> table
+
                
       ->Virtual Meet
       
