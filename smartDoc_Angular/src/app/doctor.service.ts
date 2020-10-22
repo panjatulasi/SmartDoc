@@ -36,10 +36,12 @@ export class DoctorService {
    }
 
    updateDoctor(editObject: any) {
-    return this.httpClient.put('smartDoc/webapi/myresource/updateEmp', editObject);
+    return this.httpClient.put('smartDoc/webapi/myresource/updateDoctor', editObject);
    }
-
    getAllDepartments(): any {
     return this.httpClient.get('smartDoc/webapi/myresource/getDepartments');
+   }
+   getDoctorByUserName(userName: String) {
+    return this.httpClient.get('smartDoc/webapi/myresource/getDoctorByUserName/' + userName);
    }
 }

@@ -1,0 +1,49 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+ <h1>HIIIIIIII</h1>
+<form class="form-group"  #updateForm="ngForm"  (ngSubmit)="updatePatient()">
+    Name: <input type="text" name="patientName" value={{patient.patientName}} [(ngModel)]="editObject.patientName"
+        class="form-control"><br />
+    Age: <input type="number" name="age" value={{patient.age}} [(ngModel)]="editObject.age"
+        class="form-control"><br />
+    Gender: <input type="text" name="gender" value={{patient.gender}} [(ngModel)]="editObject.gender"
+        class="form-control"><br />
+    Mobile: <input type="text" name="mobileNumber" value={{patient.mobileNumber}} [(ngModel)]="editObject.mobileNumber"
+        class="form-control"><br />
+    Password: <input type="password" name="password" value={{patient.password}} [(ngModel)]="editObject.password"
+        class="form-control"><br />
+        <!--<button class="btn btn-primary btn-sm" (click)="updatePatient()">Update</button> -->
+         <input type="submit" style="margin-top: 35px;" class="fadeIn fourth" value="update">
+</form> 
+
+<!-- <div class="container">
+    <div class="modal fade" id="patientModel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close" data-dismiss="modal">&times;</span>
+                    <h4 class="modal-title">Update Form</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group">
+                        Name: <input type="text" name="patientName" value={{patient.patientName}} [(ngModel)]="editObject.patientName"
+        class="form-control"><br />
+    Age: <input type="number" name="age" value={{patient.age}} [(ngModel)]="editObject.age"
+        class="form-control"><br />
+    Gender: <input type="text" name="gender" value={{patient.gender}} [(ngModel)]="editObject.gender"
+        class="form-control"><br />
+    Mobile: <input type="text" name="mobileNumber" value={{patient.mobileNumber}} [(ngModel)]="editObject.mobileNumber"
+        class="form-control"><br />
+    Password: <input type="password" name="password" value={{patient.password}} [(ngModel)]="editObject.password"
+        class="form-control"><br />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-sm" (click)="updatePatient()" data-dismiss="modal">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

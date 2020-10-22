@@ -1,0 +1,15 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+ <h1>HIIIIIIII</h1>
+<form class="form-group"  #updateForm="ngForm"  (ngSubmit)="updateDoctor()">
+    Name: <input type="text" name="doctorName" value={{doctor.doctorName}} [(ngModel)]="editObject.doctorName"
+        class="form-control"><br />
+    Mobile: <input type="text" name="mobileNumber" value={{doctor.mobileNumber}} [(ngModel)]="editObject.mobileNumber"
+        class="form-control"><br />
+    Password: <input type="password" name="password" value={{doctor.password}} [(ngModel)]="editObject.password"
+        class="form-control"><br />
+        <!--<button class="btn btn-primary btn-sm" (click)="updatedoctor()">Update</button> -->
+         <input type="submit" style="margin-top: 35px;" class="fadeIn fourth" value="update">
+</form> 

@@ -36,10 +36,13 @@ export class PharmacistService {
   }
 
    updatePharmacist(editObject: any) {
-    return this.httpClient.put('smartDoc/webapi/myresource/updateEmp', editObject);
+    return this.httpClient.put('smartDoc/webapi/myresource/updatePharmacist', editObject);
    }
 
    getAllDepartments(): any {
     return this.httpClient.get('smartDoc/webapi/myresource/getDepartments');
+   }
+   getPharmacistByUserName(userName: String) {
+    return this.httpClient.get('smartDoc/webapi/myresource/getPharmacistByUserName/' + userName);
    }
 }

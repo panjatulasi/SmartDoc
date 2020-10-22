@@ -17,6 +17,12 @@ import { HomeComponent } from './home/home.component';
 import { HospitalLoginComponent } from './hospital-login/hospital-login.component';
 import { HospitalRelatedComponent } from './hospital-related/hospital-related.component';
 import { CommonLoginComponent } from './common-login/common-login.component';
+import { PatientHomeComponent } from './patient-home/patient-home.component';
+import { AssistantHomeComponent } from './assistant-home/assistant-home.component';
+import { PatientProfileEditComponent } from './patient-profile-edit/patient-profile-edit.component';
+import { DoctorProfileEditComponent } from './doctor-profile-edit/doctor-profile-edit.component';
+import { AssistantProfileEditComponent } from './assistant-profile-edit/assistant-profile-edit.component';
+import { PharmacistProfileEditComponent } from './pharmacist-profile-edit/pharmacist-profile-edit.component';
 
 const appRoot: Routes = [
   {path: '', component: HomeComponent},
@@ -30,6 +36,10 @@ const appRoot: Routes = [
   {path: 'hospital-related/assistant-register', component: AssistantRegisterComponent},
   {path: 'hospital-related', component: HospitalRelatedComponent},
   {path: 'common-login',component: CommonLoginComponent},
+  {path: 'patient-profile-edit',component: PatientProfileEditComponent},
+  {path: 'assistant-profile-edit',component: AssistantProfileEditComponent},
+  {path: 'doctor-profile-edit',component: DoctorProfileEditComponent},
+  {path: 'pharmacist-profile-edit',component: PharmacistProfileEditComponent}
 
 
 
@@ -49,6 +59,12 @@ const appRoot: Routes = [
     HospitalLoginComponent,
     HospitalRelatedComponent,
     CommonLoginComponent,
+    PatientHomeComponent,
+    AssistantHomeComponent,
+    PatientProfileEditComponent,
+    DoctorProfileEditComponent,
+    AssistantProfileEditComponent,
+    PharmacistProfileEditComponent,
   ],
   imports: [
 

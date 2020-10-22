@@ -36,10 +36,13 @@ export class AssistantService {
    }
 
    updateAssistant(editObject: any) {
-    return this.httpClient.put('smartDoc/webapi/myresource/updateEmp', editObject);
+    return this.httpClient.put('smartDoc/webapi/myresource/updateAssistant', editObject);
    }
 
    getAllDepartments(): any {
     return this.httpClient.get('smartDoc/webapi/myresource/getDepartments');
+   }
+   getAssistantByUserName(userName: String) {
+    return this.httpClient.get('smartDoc/webapi/myresource/getAssistantByUserName/' + userName);
    }
 }

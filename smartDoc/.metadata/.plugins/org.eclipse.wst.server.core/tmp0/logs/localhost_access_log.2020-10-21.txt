@@ -1,0 +1,17 @@
+127.0.0.1 - - [21/Oct/2020:19:03:14 +0530] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [21/Oct/2020:19:03:16 +0530] "GET /smartDoc/index.jsp HTTP/1.1" 200 290
+0:0:0:0:0:0:0:1 - - [21/Oct/2020:19:03:16 +0530] "GET /favicon.ico HTTP/1.1" 404 1085
+127.0.0.1 - - [21/Oct/2020:19:05:34 +0530] "POST /smartDoc/webapi/myresource/registerPatient HTTP/1.1" 204 -
+127.0.0.1 - - [21/Oct/2020:19:07:22 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserPass/dhoni@123/dhoni@1234 HTTP/1.1" 204 -
+127.0.0.1 - - [21/Oct/2020:19:07:36 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserPass/dhoni@123/dhoni@12345 HTTP/1.1" 204 -
+127.0.0.1 - - [21/Oct/2020:19:39:54 +0530] "GET /patient-login HTTP/1.1" 404 1087
+127.0.0.1 - - [21/Oct/2020:20:50:13 +0530] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [21/Oct/2020:20:50:21 +0530] "GET /smartDoc/index.jsp HTTP/1.1" 200 290
+0:0:0:0:0:0:0:1 - - [21/Oct/2020:20:50:21 +0530] "GET /favicon.ico HTTP/1.1" 404 1085
+127.0.0.1 - - [21/Oct/2020:21:28:32 +0530] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [21/Oct/2020:21:28:34 +0530] "GET /smartDoc/index.jsp HTTP/1.1" 200 290
+0:0:0:0:0:0:0:1 - - [21/Oct/2020:21:28:34 +0530] "GET /favicon.ico HTTP/1.1" 404 1085
+127.0.0.1 - - [21/Oct/2020:21:29:26 +0530] "POST /smartDoc/webapi/myresource/registerPatient HTTP/1.1" 204 -
+127.0.0.1 - - [21/Oct/2020:21:29:56 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserPass/sachin123/123 HTTP/1.1" 204 -
+127.0.0.1 - - [21/Oct/2020:21:35:53 +0530] "POST /smartDoc/webapi/myresource/registerPatient HTTP/1.1" 204 -
+127.0.0.1 - - [21/Oct/2020:21:39:35 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserPass/gautham123/123 HTTP/1.1" 204 -

@@ -24,7 +24,7 @@ export class DoctorLoginComponent implements OnInit {
       }
       else {
         localStorage.setItem('userName',loginForm.userName);
-        this.router.navigate(['common-login']);
+        this.router.navigate(['doctor-profile-edit']);
       }
     })
   }

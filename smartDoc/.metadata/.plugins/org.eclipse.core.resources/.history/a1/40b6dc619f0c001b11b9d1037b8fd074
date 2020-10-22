@@ -1,5 +1,0 @@
-package com.ts.db;
-
-public class HibernateTemplate {
-
-}

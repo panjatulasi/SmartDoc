@@ -1,8 +1,14 @@
 package com.ts.db;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.xml.bind.DatatypeConverter;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -80,14 +86,14 @@ public class HibernateTemplate {
 		  Patient patient = (Patient)queryResult;
 		  return patient; 
 		}
-	/*public static Object getObjectByEmail(String email) {
+	/*public static Object getPatientByUserName(String userName) {
 		
-		String queryString = "from Employee where email = :email";
+		String queryString = "from Patient where userName = :userName";
 		  Query query = sessionFactory.openSession().createQuery(queryString);
-		  query.setString("email", email);
+		  query.setString("userName", userName);
 		  Object queryResult = query.uniqueResult();
-		  Employee employee = (Employee)queryResult;
-		  return employee; 
+		  Patient patient = (Patient)queryResult;
+		  return patient; 
 		}*/
 	
 	public static List<Object> getObjectListByQuery(String query)
@@ -157,4 +163,24 @@ public class HibernateTemplate {
 			criteria.add(nameCriterion);
 			return criteria.list();
 	}
+	
+	
+	//Encryption And Decryption
+	
+	public static SecretKey getSecretEncryptionKey() throws Exception{
+        KeyGenerator generator = KeyGenerator.getInstance("AES");
+        generator.init(128); // The AES key size in number of bits
+        SecretKey secKey = generator.generateKey();
+        return secKey;
+    }
+    public static byte[] encryptText(String plainText,SecretKey secKey) throws Exception{
+    // AES defaults to AES/ECB/PKCS5Padding in Java 7
+        Cipher aesCipher = Cipher.getInstance("AES");
+        aesCipher.init(Cipher.ENCRYPT_MODE, secKey);
+        byte[] byteCipherText = aesCipher.doFinal(plainText.getBytes());
+        return byteCipherText;
+    }
+    public static String  bytesToHex(byte[] hash) {
+        return DatatypeConverter.printHexBinary(hash);
+    }
 }
