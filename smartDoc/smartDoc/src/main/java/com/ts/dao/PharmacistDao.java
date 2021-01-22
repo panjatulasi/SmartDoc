@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import com.ts.AESEncryption;
+
 import com.ts.db.HibernateTemplate;
 import com.ts.dto.Doctor;
 import com.ts.dto.Patient;
@@ -30,18 +30,6 @@ public static Object getPharmacistByUserPass(String loginId,String password) {
 	  Object queryResult = query.uniqueResult();
 	  Pharmacist pharmacist = (Pharmacist)queryResult;
 	  //String dbPassword = doctor.getPassword();
-	  String decPassword;
-	  if(pharmacist != null) {
-	  AESEncryption aesEncryption = new AESEncryption(pharmacist.getPassword());
-		try{
-			decPassword=aesEncryption.dec();
-			if(decPassword != password)
-				return null;
-		}
-		catch(Exception ex) {
-			System.out.println(ex);
-		}
-	  }
 	  return pharmacist; 
 		}
 public static Object getPharmacistByUserName(String userName) {

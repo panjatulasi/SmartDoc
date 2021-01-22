@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import com.ts.AESEncryption;
+
 import com.ts.db.HibernateTemplate;
 import com.ts.dto.Assistant;
 import com.ts.dto.Doctor;
@@ -30,18 +30,6 @@ public static Object getAssistantByUserPass(String loginId,String password) {
 	  Object queryResult = query.uniqueResult();
 	  Assistant assistant = (Assistant)queryResult;
 	  //String dbPassword = doctor.getPassword();
-	  String decPassword;
-	  if(assistant != null) {
-	  AESEncryption aesEncryption = new AESEncryption(assistant.getPassword());
-		try{
-			decPassword=aesEncryption.dec();
-			if(decPassword != password)
-				return null;
-		}
-		catch(Exception ex) {
-			System.out.println(ex);
-		}
-	  }
 	  return assistant; 
 		}
 public static Object getAssistantByUserName(String userName) {

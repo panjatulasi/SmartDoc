@@ -1,0 +1,5 @@
+
+Jan 21, 2021 17:24:12.79 NEW SESSION
+Jan 21, 2021 17:24:12.79 [21336:1008:0121/172412.789:ERROR:device_event_log_impl.cc(211)] [17:24:12.789] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Jan 21, 2021 17:24:12.79 [21336:1008:0121/172412.792:ERROR:device_event_log_impl.cc(211)] [17:24:12.792] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Jan 21, 2021 17:34:10.61 [0121/173410.608:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

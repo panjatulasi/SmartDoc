@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from './../patient.service'
 import { Router } from '@angular/router';
+import { ViewChild,ElementRef } from '@angular/core';
+import * as CryptoJS from 'crypto-js';
 
 
 @Component({
@@ -9,8 +11,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./patient-register.component.css']
 })
 export class PatientRegisterComponent implements OnInit {
+  @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
+  auth2:any;
+  dataToEncrypt : any;
 
   patient: any;
+encryptedData : string = "";
+secretkey:string = "yoursecretkey";
   
   constructor(private router: Router,private service: PatientService) {
     this.patient = {patientId: '', patientName: '', userName:'', mobileNumber: '',age:'',gender:'', password: '' 
@@ -18,9 +25,57 @@ export class PatientRegisterComponent implements OnInit {
 }
 
   ngOnInit(): void {
+    this.googleInitialize();
+  }
+  Encrypt(){
+    this.encryptedData=CryptoJS.AES.encrypt(JSON.stringify(this.dataToEncrypt),this.secretkey).toString();
+    console.log("HIIII");
+    //alert(this.encryptedData);
+  }
+  googleInitialize() {
+    window['googleSDKLoaded'] = () => {
+      window['gapi'].load('auth2', () => {
+        this.auth2 = window['gapi'].auth2.init({
+          client_id: '968949306970-h7r96vnngtt1htdigvnqa9viibl4cddh.apps.googleusercontent.com',
+          cookie_policy: 'single_host_origin',
+          scope: 'profile email'
+        });
+        this.prepareLogin();
+      });
+    }
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'google-jssdk'));
+  }
+  prepareLogin() {
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
+      (googleUser) => {
+        let profile = googleUser.getBasicProfile();
+        console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+        this.patient.userName =  profile.getName()
+        this.router.navigate(['patient-profile-edit']);
+      }, (error) => {
+        alert(JSON.stringify(error, undefined, 2));
+      });
   }
   register(): void {
-    this.service.registerPatient(this.patient).subscribe((result: any) => { this.router.navigate(['patient-login']); } );
+    this.dataToEncrypt = {password:this.patient.password};
+    this.Encrypt();
+    this.patient.password=this.encryptedData;
+    this.service.registerPatient(this.patient).subscribe((result: any) => { 
+      console.log(result);
+      if(result === 0)
+      alert("registration failed :( ");
+      else{
+        localStorage.setItem('userName',this.patient.userName);
+        localStorage.setItem('mobileNumber',this.patient.mobileNumber);
+      this.router.navigate(['patient-appointment']);}} );
     
     console.log(this.patient);
   }

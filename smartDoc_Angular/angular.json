@@ -23,15 +23,35 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-             "src/assets/css/bootstrap.min.css",
-             "src/assets/css/bootstrap.css",
-             "src/assets/css/font-awesome.min.css"
+              "src/assets/css/animate.css",
+              "src/assets/css/bootstrap-datepicker.min.css",
+              "src/assets/css/bootstrap-datetimepicker.min.css",
+              "src/assets/css/bootstrap.css",
+              "src/assets/css/flexslider.css",
+              "src/assets/css/icomoon.css",
+              "src/assets/css/magnific-popup.css",
+              "src/assets/css/owl.carousel.min.css",
+              "src/assets/css/owl.theme.default.min.css",
+              "src/assets/css/style.css",
+              "src/assets/css/themify-icons.css"
             ],
             "scripts": [
+              "src/assets/js/bootstrap-datepicker.min.js",
+              "src/assets/js/bootstrap-datetimepicker.min.js",
               "src/assets/js/bootstrap.min.js",
-              "src/assets/js/jquery-1.11.1.min.js",
-              "src/assets/js/jquery.min.js"
+              "src/assets/js/google_map.js",
+              "src/assets/js/jquery.countTo.js",
+              "src/assets/js/jquery.easing.1.3.js",
+              "src/assets/js/jquery.magnific-popup.min.js",
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/jquery.stellar.min.js",
+              "src/assets/js/jquery.waypoints.min.js",
+              "src/assets/js/magnific-popup-options.js",
+              "src/assets/js/main.js",
+              "src/assets/js/modernizr-2.6.2.min.js",
+              "src/assets/js/moment.min.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/respond.min.js",
             ]
           },
           "configurations": {

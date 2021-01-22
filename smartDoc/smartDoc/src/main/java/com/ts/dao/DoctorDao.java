@@ -1,13 +1,16 @@
 package com.ts.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import com.ts.AESEncryption;
+
 import com.ts.db.HibernateTemplate;
+import com.ts.dto.Appointments;
 import com.ts.dto.Doctor;
 import com.ts.dto.Patient;
 
@@ -20,6 +23,11 @@ public class DoctorDao {
 		System.out.println(doctor); 
 		return HibernateTemplate.addObject(doctor);
 	}
+	public List<Doctor> getAllDepartments() {
+		List<Doctor> doctors=(List)HibernateTemplate.getObjectListByQuery("From Doctor");
+		System.out.println("Inside All Employees ..."+doctors);
+		return doctors;
+	}
 public static Object getDoctorByUserPass(String loginId,String password) {
 		
 		String queryString = "from Doctor where userName = :loginId";
@@ -28,18 +36,6 @@ public static Object getDoctorByUserPass(String loginId,String password) {
 		  Object queryResult = query.uniqueResult();
 		  Doctor doctor = (Doctor)queryResult;
 		  //String dbPassword = doctor.getPassword();
-		  String decPassword;
-		  if(doctor != null) {
-		  AESEncryption aesEncryption = new AESEncryption(doctor.getPassword());
-			try{
-				decPassword=aesEncryption.dec();
-				if(decPassword != password)
-					return null;
-			}
-			catch(Exception ex) {
-				System.out.println(ex);
-			}
-		  }
 		  return doctor; 
 		}
 public static Object getDoctorByUserName(String userName) {

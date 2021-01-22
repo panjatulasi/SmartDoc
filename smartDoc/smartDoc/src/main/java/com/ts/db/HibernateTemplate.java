@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
+//import javax.crypto.Cipher;
+//import javax.crypto.KeyGenerator;
+//import javax.crypto.SecretKey;
 import javax.xml.bind.DatatypeConverter;
 
 import org.hibernate.Criteria;
@@ -57,6 +57,7 @@ public class HibernateTemplate {
 			
 			e.printStackTrace();
 		}
+		System.out.println("Inside Hiber"+result);
 		
 		return result;
 	}
@@ -100,6 +101,15 @@ public class HibernateTemplate {
 	{
 		return sessionFactory.openSession().createQuery(query).list();
 	}
+//public static List<Object> getAppointmentsByDepartment(String department) {
+//		
+//		String queryString = "from Appointments where department = :department";
+//		  Query query = sessionFactory.openSession().createQuery(queryString);
+//		  query.setString("department", department);
+//		  
+//		  Object queryResult = query.uniqueResult();
+//		  return List<Appointments>; 
+//		}
 	
 	public static int updateObject(Object obj)
 	{
@@ -167,20 +177,20 @@ public class HibernateTemplate {
 	
 	//Encryption And Decryption
 	
-	public static SecretKey getSecretEncryptionKey() throws Exception{
-        KeyGenerator generator = KeyGenerator.getInstance("AES");
-        generator.init(128); // The AES key size in number of bits
-        SecretKey secKey = generator.generateKey();
-        return secKey;
-    }
-    public static byte[] encryptText(String plainText,SecretKey secKey) throws Exception{
-    // AES defaults to AES/ECB/PKCS5Padding in Java 7
-        Cipher aesCipher = Cipher.getInstance("AES");
-        aesCipher.init(Cipher.ENCRYPT_MODE, secKey);
-        byte[] byteCipherText = aesCipher.doFinal(plainText.getBytes());
-        return byteCipherText;
-    }
-    public static String  bytesToHex(byte[] hash) {
-        return DatatypeConverter.printHexBinary(hash);
-    }
+//	public static SecretKey getSecretEncryptionKey() throws Exception{
+//        KeyGenerator generator = KeyGenerator.getInstance("AES");
+//        generator.init(128); // The AES key size in number of bits
+//        SecretKey secKey = generator.generateKey();
+//        return secKey;
+//    }
+//    public static byte[] encryptText(String plainText,SecretKey secKey) throws Exception{
+//    // AES defaults to AES/ECB/PKCS5Padding in Java 7
+//        Cipher aesCipher = Cipher.getInstance("AES");
+//        aesCipher.init(Cipher.ENCRYPT_MODE, secKey);
+//        byte[] byteCipherText = aesCipher.doFinal(plainText.getBytes());
+//        return byteCipherText;
+//    }
+//    public static String  bytesToHex(byte[] hash) {
+//        return DatatypeConverter.printHexBinary(hash);
+//    }
 }

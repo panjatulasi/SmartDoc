@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppointmentServiceService } from '../appointment-service.service';
+import { PatientService } from '../patient.service';
 import {DoctorService} from './../doctor.service';
 declare var jQuery: any;
 
@@ -12,13 +15,30 @@ export class DoctorProfileEditComponent implements OnInit {
   doctor: any;
   editObject: any;
   userName1: String;
-  constructor(private service: DoctorService) {
-  this.editObject = {doctorId:'', doctorName: '', userName: '' ,  mobileNumber: '', password: ''};
+  appointments:any;
+  patient:any;
+  userName:String;
+  constructor(private service: DoctorService,private service1: PatientService,private router: Router,private service2: AppointmentServiceService) {
+  //this.editObject = {doctorId:'', doctorName: '', userName: '' ,  mobileNumber: '', password: '',department:''};
   }
 
   ngOnInit() {
     this.userName1 = localStorage.getItem('userName');
     this.service.getDoctorByUserName(this.userName1).subscribe((result: any) => { console.log(result); this.editObject = result; });
+  }
+  searchByUserName(){
+    console.log(this.userName);
+    this.service2.getAppointmentsByUserName(this.userName).subscribe((result: any) => {
+      console.log(result); this.appointments = result; });
+    this.service1.getPatientByUserName(this.userName).subscribe((result: any) => { console.log(result); this.patient = result; });
+    if(this.patient === null){
+      alert("UserName Not Found :(");
+      this.refresh();
+      }
+    else {
+    this.router.navigate(['search-by-user-name']);
+    }
+    //this.refresh();
   }
   showEditPopup(editObject: any) {
     //this.editObject = doctor;
@@ -26,8 +46,18 @@ export class DoctorProfileEditComponent implements OnInit {
   }
   updateDoctor() {
     console.log("Inside Update in VS"+this.editObject);
-    this.service.updateDoctor(this.editObject).subscribe((result: any) => { if(result) {alert("Update Successful");}});
+    
+    this.service.updateDoctor(this.editObject).subscribe((result: any) => { 
+      if(result === 0){
+        alert("Update failed -_-");
+      } 
+      else{
+        alert("Update Successful");}});
     
   }
+  refresh(){
+    window.location.reload();
+}
+
 
 }

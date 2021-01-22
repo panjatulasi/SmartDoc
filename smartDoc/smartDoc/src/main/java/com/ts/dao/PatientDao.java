@@ -10,7 +10,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.ts.dto.Doctor;
 import com.ts.dto.Patient;
-import com.ts.AESEncryption;
+//import com.ts.AESEncryption;
 import com.ts.db.HibernateTemplate;
 
 public class PatientDao {
@@ -30,20 +30,20 @@ public static Object getPatientByUserPass(String loginId,String password) {
 	  Patient patient = (Patient)queryResult;
 	  //String dbPassword = doctor.getPassword();
 	  String decPassword;
-	  if(patient != null) {
-	  
-		try{
-			AESEncryption aesEncryption = new AESEncryption(patient.getPassword());
-			decPassword=aesEncryption.dec();
-			System.out.println("Inside getPatient By User Pass:"+decPassword+" "+password);
-			if(decPassword.equals(password))
-				return null;
-		}
-		catch(Exception ex) {
-			System.out.println(ex);
-			return null;
-		}
-	  }
+//	  if(patient != null) {
+//	  
+//		try{
+//			//AESEncryption aesEncryption = new AESEncryption(patient.getPassword());
+//			//decPassword=aesEncryption.dec();
+//			//System.out.println("Inside getPatient By User Pass:"+decPassword+" "+password);
+//			if(decPassword.equals(password))
+//				return null;
+//		}
+//		catch(Exception ex) {
+//			System.out.println(ex);
+//			return null;
+//		}
+//	  }
 	  return patient; 
 		}
 public static Object getPatientByUserName(String userName) {

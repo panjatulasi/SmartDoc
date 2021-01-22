@@ -1,8 +1,11 @@
 package com.ts;
 import com.ts.db.HibernateTemplate;
 
-import javax.crypto.SecretKey;
+import java.util.List;
+
+//import javax.crypto.SecretKey;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -11,10 +14,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.ts.dao.AppointmentsDao;
 import com.ts.dao.AssistantDao;
 import com.ts.dao.DoctorDao;
 import com.ts.dao.PatientDao;
 import com.ts.dao.PharmacistDao;
+import com.ts.dto.Appointments;
 import com.ts.dto.Assistant;
 import com.ts.dto.Doctor;
 import com.ts.dto.Patient;
@@ -41,45 +46,139 @@ public class MyResource {
 	@Path("getPatientByUserPass/{userName}/{password}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Object getPatientByUserPass(@PathParam("userName") String userName, @PathParam("password") String password) {
+	public Patient getPatientByUserPass(@PathParam("userName") String userName, @PathParam("password") String password) {
 		System.out.println("Recieved path params: " + userName + " " + password);
 		PatientDao patientDao = new PatientDao();
 		Patient patient = (Patient) patientDao.getPatientByUserPass(userName, password);
 		return patient;
 	}
+	@Path("registerPatientByGoogle")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public void registerPatientByGoogle(Patient patient1){
+		PatientDao patientDao = new PatientDao();
+		Patient patient = (Patient)patientDao.getPatientByUserName(patient1.getUserName());
+		if( patient == null){
+			System.out.println(patient1);
+			patientDao.register(patient1);	
+		}
+	}
 
 	@Path("registerPatient")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public void registerPatient(Patient patient) {
+	public int registerPatient(Patient patient) {
 		System.out.println("Patient Registered!" + patient);
-		AESEncryption aesEncryption = new AESEncryption(patient.getPassword());
-		try{
-		patient.setPassword(aesEncryption.enc());
-		}
-		catch(Exception ex) {
-			System.out.println(ex);
-		}
+		//AESEncryption aesEncryption = new AESEncryption(patient.getPassword());
+		//try{
+		//patient.setPassword(patient.getPassword());
+		//}
+		//catch(Exception ex) {
+			//System.out.println(ex);
+		//}
 		PatientDao patientDao = new PatientDao();
-		patientDao.register(patient);
+		return patientDao.register(patient);
 	}
+	@Path("registerAppointment")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public int registerAppointment(Appointments appointments) {
+		System.out.println("Patient Registered! in Eclipse" + appointments);
+		//AESEncryption aesEncryption = new AESEncryption(patient.getPassword());
+		//try{
+		//patient.setPassword(patient.getPassword());
+		//}
+		//catch(Exception ex) {
+			//System.out.println(ex);
+		//}
+		
+		AppointmentsDao appointmentsDao = new AppointmentsDao();
+		return appointmentsDao.register(appointments);
+	}
+	
+	@Path("getAllAppointments/{department}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Appointments> getAllAppointments(@PathParam("department") String department) {
+
+		AppointmentsDao appointmentsDAO = new AppointmentsDao();
+		List <Appointments> appointmentList = appointmentsDAO.getAllAppointments(department);
+
+		return appointmentList;
+	}
+	@Path("getAllDepartments")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Doctor> getAllDepartments() {
+
+		DoctorDao doctorDao = new DoctorDao();
+		List <Doctor> doctorList = doctorDao.getAllDepartments();
+
+		return doctorList;
+	}
+	@Path("getUpcomingAppointments/{department}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Appointments> getUpcomingAppointments(@PathParam("department") String department) {
+
+		AppointmentsDao appointmentsDAO = new AppointmentsDao();
+		List <Appointments> appointmentList = appointmentsDAO.getUpcomingAppointments(department);
+
+		return appointmentList;
+	}
+	@Path("deleteAppointment/{appointmentId}")
+	@DELETE
+	public void deleteAppointment(@PathParam("appointmentId") int appointmentId) {
+		System.out.println("Data Received in Delete : " + appointmentId);
+		
+		AppointmentsDao appointmentsDao = new AppointmentsDao();
+		Appointments appointment = appointmentsDao.getAppointment(appointmentId);
+		
+		appointmentsDao.deleteAppointment(appointment);
+		System.out.println("Employee record deleted successfully..!!");
+	}
+	
+	@Path("updateAppointment")
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void updateEmp(Appointments appointments) {
+		System.out.println("Data Received in Update : " + appointments);
+		
+		AppointmentsDao appointmentsDao = new AppointmentsDao();
+		appointmentsDao.updateAppointment(appointments);
+		
+		System.out.println("Employee record updated successfully..!!");
+	}
+
+	
 	@Path("getPatientByUserName/{userName}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Object getPatientByUserName(@PathParam("userName") String userName) {
+	public Patient getPatientByUserName(@PathParam("userName") String userName) {
 		System.out.println("Patient UserName!" + userName);
 		
 		PatientDao patientDao = new PatientDao();
 		Patient patient = (Patient)patientDao.getPatientByUserName(userName);
 		return patient;
 	}
+	@Path("getAppointmentsByUserName/{userName}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List <Appointments> getAppointmentsByUserName(@PathParam("userName") String userName) {
+		System.out.println("Patient UserName!" + userName);
+		
+		AppointmentsDao appointmentsDao = new AppointmentsDao();
+		List <Appointments> appointments = (List<Appointments>)appointmentsDao.getAppointmentsByUserName(userName);
+		System.out.println(appointments);
+		return appointments;
+	}
 	@Path("updatePatient")
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updatePatient(Patient patient) {
+	public int updatePatient(Patient patient) {
 		System.out.println("Inside Update" + patient);
 		PatientDao patientDao = new PatientDao();
-		 patientDao.updatePatient(patient);
+		return patientDao.updatePatient(patient);
 		//return x;
 		
 	}
@@ -87,47 +186,26 @@ public class MyResource {
 	@Path("registerDoctor")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public void registerDoctor(Doctor doctor) {
-		AESEncryption aesEncryption = new AESEncryption(doctor.getPassword());
-		try{
-			doctor.setPassword(aesEncryption.enc());
-		}
-		catch(Exception ex) {
-			System.out.println(ex);
-		}
+	public int registerDoctor(Doctor doctor) {
 		DoctorDao doctorDao = new DoctorDao();
-		doctorDao.register(doctor);
+		return doctorDao.register(doctor);
 	}
 
 	@Path("registerAssistant")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public void registerAssistant(Assistant assistant) {
-		AESEncryption aesEncryption = new AESEncryption(assistant.getPassword());
-		try{
-			assistant.setPassword(aesEncryption.enc());
-		}
-		catch(Exception ex) {
-			System.out.println(ex);
-		}
+	public int registerAssistant(Assistant assistant) {
 		AssistantDao assistantDao = new AssistantDao();
-		assistantDao.register(assistant);
+		return assistantDao.register(assistant);
 	}
 
 	@Path("registerPharmacist")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public void registerPharmacist(Pharmacist pharmacist) {
-		AESEncryption aesEncryption = new AESEncryption(pharmacist.getPassword());
-		try{
-			pharmacist.setPassword(aesEncryption.enc());
-		}
-		catch(Exception ex) {
-			System.out.println(ex);
-		}
+	public int registerPharmacist(Pharmacist pharmacist) {
 		
 		PharmacistDao pharmacistDao = new PharmacistDao();
-		pharmacistDao.register(pharmacist);
+		return pharmacistDao.register(pharmacist);
 	}
 
 	@Path("getDoctorByUserPass/{loginId}/{password}")
@@ -172,10 +250,10 @@ public class MyResource {
 	@Path("updateAssistant")
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateAssistant(Assistant assistant) {
+	public int updateAssistant(Assistant assistant) {
 		System.out.println("Inside Update" + assistant);
 		AssistantDao assistantDao = new AssistantDao();
-		assistantDao.updateAssistant(assistant);
+		return assistantDao.updateAssistant(assistant);
 		//return x;
 		
 	}
@@ -191,10 +269,10 @@ public class MyResource {
 	@Path("updateDoctor")
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateDoctor(Doctor doctor) {
+	public int updateDoctor(Doctor doctor) {
 		System.out.println("Inside Update" + doctor);
 		DoctorDao doctorDao = new DoctorDao();
-		doctorDao.updateDoctor(doctor);
+		return doctorDao.updateDoctor(doctor);
 		//return x;
 		
 	}
@@ -210,10 +288,10 @@ public class MyResource {
 	@Path("updatePharmacist")
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updatePharmacist(Pharmacist pharmacist) {
+	public int updatePharmacist(Pharmacist pharmacist) {
 		System.out.println("Inside Update" + pharmacist);
 		PharmacistDao pharmacistDao = new PharmacistDao();
-		PharmacistDao.updatePharmacist(pharmacist);
+		return PharmacistDao.updatePharmacist(pharmacist);
 		//return x;
 		
 	}

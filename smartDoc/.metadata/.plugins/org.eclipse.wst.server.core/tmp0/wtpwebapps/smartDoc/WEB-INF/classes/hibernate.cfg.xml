@@ -13,6 +13,7 @@
     <mapping class="com.ts.dto.Department"/> 
     <mapping class="com.ts.dto.Doctor"/>
     <mapping class="com.ts.dto.Patient"/> 
-    <mapping class="com.ts.dto.Pharmacist"/>   
+    <mapping class="com.ts.dto.Pharmacist"/>
+    <mapping class="com.ts.dto.Appointments"/>   
   </session-factory>
 </hibernate-configuration>

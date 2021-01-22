@@ -23,22 +23,36 @@ import { PatientProfileEditComponent } from './patient-profile-edit/patient-prof
 import { DoctorProfileEditComponent } from './doctor-profile-edit/doctor-profile-edit.component';
 import { AssistantProfileEditComponent } from './assistant-profile-edit/assistant-profile-edit.component';
 import { PharmacistProfileEditComponent } from './pharmacist-profile-edit/pharmacist-profile-edit.component';
+import { PatientAppointmentComponent } from './patient-appointment/patient-appointment.component';
+import { DoctorAppointmentComponent } from './doctor-appointment/doctor-appointment.component';
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
+import { UpcomingAppointmentsComponent } from './upcoming-appointments/upcoming-appointments.component';
+import { SearchByUserNameComponent } from './search-by-user-name/search-by-user-name.component';
+import { PreviousRecordsComponent } from './previous-records/previous-records.component';
 
 const appRoot: Routes = [
-  {path: '', component: HomeComponent},
+  {path: 'patient-appointment', component: PatientAppointmentComponent},
+  {path: 'doctor-appointment', component: DoctorAppointmentComponent},
+   {path: 'hospital-login', component: HospitalLoginComponent},
+   {path: 'search-by-user-name', component: SearchByUserNameComponent},
+   {path: 'upcoming-appointments', component: UpcomingAppointmentsComponent},
+   {path: 'previous-records', component: PreviousRecordsComponent},
+   {path: '', component: SearchByUserNameComponent},
+   // {path: '', component: HospitalLoginComponent},
   {path: 'patient-login', component: PatientLoginComponent},
-  {path: 'hospital-related/pharmacist-login', component: PharmacistLoginComponent},
-  {path: 'hospital-related/doctor-login', component: DoctorLoginComponent},
-  {path: 'hospital-related/assistant-login', component: AssistantLoginComponent},
+  {path: 'pharmacist-login', component: PharmacistLoginComponent},
+  {path: 'doctor-login', component: DoctorLoginComponent},
+  {path: 'assistant-login', component: AssistantLoginComponent},
   {path: 'patient-register', component: PatientRegisterComponent},
-  {path: 'hospital-related/pharmacist-register', component: PharmacistRegisterComponent},
-  {path: 'hospital-related/doctor-register', component: DoctorRegisterComponent},
-  {path: 'hospital-related/assistant-register', component: AssistantRegisterComponent},
+  {path: 'pharmacist-register', component: PharmacistRegisterComponent},
+  {path: 'doctor-register', component: DoctorRegisterComponent},
+  {path: 'assistant-register', component: AssistantRegisterComponent},
   {path: 'hospital-related', component: HospitalRelatedComponent},
   {path: 'common-login',component: CommonLoginComponent},
   {path: 'patient-profile-edit',component: PatientProfileEditComponent},
   {path: 'assistant-profile-edit',component: AssistantProfileEditComponent},
   {path: 'doctor-profile-edit',component: DoctorProfileEditComponent},
+
   {path: 'pharmacist-profile-edit',component: PharmacistProfileEditComponent}
 
 
@@ -65,12 +79,17 @@ const appRoot: Routes = [
     DoctorProfileEditComponent,
     AssistantProfileEditComponent,
     PharmacistProfileEditComponent,
+    PatientAppointmentComponent,
+    DoctorAppointmentComponent,
+    UpcomingAppointmentsComponent,
+    SearchByUserNameComponent,
+    PreviousRecordsComponent,
   ],
   imports: [
 
 BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot(appRoot)
   ],
-  providers: [],
+  providers: [{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

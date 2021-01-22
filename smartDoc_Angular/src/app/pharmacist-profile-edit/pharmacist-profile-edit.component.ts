@@ -27,7 +27,12 @@ export class PharmacistProfileEditComponent implements OnInit {
   }
   updatePharmacist() {
     console.log("Inside Update in VS"+this.editObject);
-    this.service.updatePharmacist(this.editObject).subscribe((result: any) => { if(result) {alert("Update Successful");}});
+    this.service.updatePharmacist(this.editObject).subscribe((result: any) => { 
+      if(result === 0){
+        alert("Update failed -_-");
+      } 
+      else{
+        alert("Update Successful");}});
     
   }
 

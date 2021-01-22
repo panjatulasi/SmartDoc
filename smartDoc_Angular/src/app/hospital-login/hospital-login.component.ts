@@ -16,8 +16,10 @@ export class HospitalLoginComponent implements OnInit {
   ngOnInit() {
   }
   loginSubmit(loginForm: any): void {
+    console.log(loginForm.loginId,loginForm.password)
     if (loginForm.loginId === 'admin' && loginForm.password === 'admin') {
-      this.router.navigate(['hospital-related']);
+      console.log("HIIIIIIIii")
+      this.router.navigate(['doctor-login']);
     } else {
       alert('Invalid Credentials..');
     }

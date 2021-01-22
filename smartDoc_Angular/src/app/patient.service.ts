@@ -44,7 +44,10 @@ export class PatientService {
     return this.httpClient.get('smartDoc/webapi/myresource/getDepartments');
    }
    getPatient(userName:any,password:any): any {
-     //console.log(userName+" "+password);
+     console.log(userName+" inside service "+password);
      return this.httpClient.get('smartDoc/webapi/myresource/getPatientByUserPass/'+userName+'/'+password);
+   }
+   registerPatientByGoogle(patient:any): any{
+    return this.httpClient.post('smartDoc/webapi/myresource/registerPatientByGoogle',patient);
    }
 }

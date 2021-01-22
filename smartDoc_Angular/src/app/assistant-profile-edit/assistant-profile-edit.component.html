@@ -1,15 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SmartDoc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
+    <meta name="keywords"
+        content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+    <meta name="author" content="GetTemplates.co" />
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="./assets/css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="./assets/css/icomoon.css">
+    <!-- Themify Icons-->
+    <link rel="stylesheet" href="./assets/css/themify-icons.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="./assets/css/magnific-popup.css">
+
+    <!-- Bootstrap DateTimePicker -->
+    <link rel="stylesheet" href="./assets/css/bootstrap-datetimepicker.min.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
 </head>
- <h1>HIIIIIIII</h1>
-<form class="form-group"  #updateForm="ngForm"  (ngSubmit)="updateAssistant()">
-    Name: <input type="text" name="assistantName" value={{assistant.assistantName}} [(ngModel)]="editObject.assistantName"
-        class="form-control"><br />
-    Mobile: <input type="text" name="mobileNumber" value={{assistant.mobileNumber}} [(ngModel)]="editObject.mobileNumber"
-        class="form-control"><br />
-    Password: <input type="password" name="password" value={{assistant.password}} [(ngModel)]="editObject.password"
-        class="form-control"><br />
-        <!--<button class="btn btn-primary btn-sm" (click)="updateassistant()">Update</button> -->
-         <input type="submit" style="margin-top: 35px;" class="fadeIn fourth" value="update">
-</form> 
+
+<body>
+    <div id="page">
+
+
+        <!-- <div class="page-inner"> -->
+        <nav class="gtco-nav" role="navigation">
+            <div class="gtco-container">
+
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <div id="gtco-logo"><a routerLink="../">SmartDoc</a></div>
+                    </div>
+                    <div class="col-xs-8 text-right menu-1">
+                        <ul>
+                            <li class="btn-cta current"><a routerLink="../hospital-login"><span>Logout</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
+            style="background-image: url(./assets/images/profileEdit.jpeg)" data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="gtco-container" style="padding-top:-12px;">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-0 text-left">
+
+
+                        <div class="row" style="padding-top:110px;padding-bottom: 15px;">
+                            <div class="col-md-7 mt-text ">
+                            </div>
+                            <div class="col-md-4 col-md-push-1 ">
+                                <div class="form-wrap">
+                                    <div class="tab">
+
+                                        <div class="tab-content" style="padding-bottom:5px;">
+                                            <div class="tab-content-inner active" data-content="signup">
+                                                <h3 style="font:verdana">Assistant</h3>
+
+                                                   
+
+
+                                                        <form class="form-group"  #updateForm="ngForm"  (ngSubmit)="updateAssistant()">
+                                                
+
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label>Name</label>
+                                                            <input type="text" name="assistantName" value={{assistant.assistantName}} [(ngModel)]="editObject.assistantName"
+                                                        class="form-control">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label>Mobile Number</label>
+                                                            <input type="text" name="mobileNumber" value={{assistant.mobileNumber}} [(ngModel)]="editObject.mobileNumber"
+                                                        class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label>Password</label>
+                                                            <input type="password" name="password" value={{assistant.password}} [(ngModel)]="editObject.password"
+                                                        class="form-control">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <input type="submit" class="btn btn-primary btn-block"
+                                                                value="update" novalidate>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+    <script src="js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Waypoints -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!-- Carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- countTo -->
+    <script src="js/jquery.countTo.js"></script>
+
+    <!-- Stellar Parallax -->
+    <script src="js/jquery.stellar.min.js"></script>
+
+    <!-- Magnific Popup -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/magnific-popup-options.js"></script>
+
+    <script src="js/moment.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+
+
+    <!-- Main -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

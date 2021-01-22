@@ -1,0 +1,17 @@
+127.0.0.1 - - [12/Jan/2021:11:40:20 +0530] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [12/Jan/2021:11:41:32 +0530] "GET /smartDoc/index.jsp HTTP/1.1" 200 290
+0:0:0:0:0:0:0:1 - - [12/Jan/2021:11:41:32 +0530] "GET /favicon.ico HTTP/1.1" 404 1085
+127.0.0.1 - - [12/Jan/2021:11:44:05 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserName/sample123 HTTP/1.1" 200 195
+127.0.0.1 - - [12/Jan/2021:11:47:08 +0530] "GET /patient-appointment HTTP/1.1" 404 1093
+127.0.0.1 - - [12/Jan/2021:11:47:33 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserName/sample123 HTTP/1.1" 200 195
+127.0.0.1 - - [12/Jan/2021:11:47:59 +0530] "GET /patient-appointment HTTP/1.1" 404 1093
+127.0.0.1 - - [12/Jan/2021:11:48:17 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserName/sample123 HTTP/1.1" 200 195
+127.0.0.1 - - [12/Jan/2021:12:32:13 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserName/sample123 HTTP/1.1" 200 195
+127.0.0.1 - - [12/Jan/2021:12:32:13 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserName/sample123 HTTP/1.1" 200 195
+127.0.0.1 - - [12/Jan/2021:12:34:20 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserName/sample123 HTTP/1.1" 200 195
+127.0.0.1 - - [12/Jan/2021:12:37:10 +0530] "GET /patient-appointment HTTP/1.1" 404 1093
+127.0.0.1 - - [12/Jan/2021:12:37:28 +0530] "GET /smartDoc/webapi/myresource/getPatientByUserName/sample123 HTTP/1.1" 200 195
+127.0.0.1 - - [12/Jan/2021:12:37:44 +0530] "GET /patient-appointment HTTP/1.1" 404 1093
+127.0.0.1 - - [12/Jan/2021:16:59:06 +0530] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [12/Jan/2021:16:59:13 +0530] "GET /smartDoc/index.jsp HTTP/1.1" 200 290
+0:0:0:0:0:0:0:1 - - [12/Jan/2021:16:59:13 +0530] "GET /favicon.ico HTTP/1.1" 404 1085
