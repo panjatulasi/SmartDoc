@@ -217,7 +217,7 @@
             </nav>
 
         <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
-            style="background-image: url(./assets/images/profileEdit.jpeg),linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3));background-blend-mode: overlay;"
+            style="background-image: url(./assets/images/profileEdit.jpeg),linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3));background-repeat: no-repeat; background-size: cover;min-height:1000px;height:fit-content;background-blend-mode: overlay;"
             data-stellar-background-ratio="0.5">
 
 
@@ -253,7 +253,7 @@
                                         class="form-control" placeholder="Prescription..."
                                         style="color:whitesmoke"></textarea></div>
                             </td>
-                            <td><button (click)="viewReport(appointment)">View Report</button></td>
+                            <td><button (click)="viewReport(appointment.patientUserName)">View Report</button></td>
                             <td><button (click)="showRecords(appointment.patientUserName)"
                                     class="glyphicon glyphicon-list-alt"></button></td>
                             <td><button (click)="updateAppointment(appointment)"

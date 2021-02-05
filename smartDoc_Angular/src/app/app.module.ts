@@ -13,12 +13,7 @@ import { DoctorLoginComponent } from './doctor-login/doctor-login.component';
 import { DoctorRegisterComponent } from './doctor-register/doctor-register.component';
 import { PharmacistRegisterComponent } from './pharmacist-register/pharmacist-register.component';
 import { PharmacistLoginComponent } from './pharmacist-login/pharmacist-login.component';
-import { HomeComponent } from './home/home.component';
 import { HospitalLoginComponent } from './hospital-login/hospital-login.component';
-import { HospitalRelatedComponent } from './hospital-related/hospital-related.component';
-import { CommonLoginComponent } from './common-login/common-login.component';
-import { PatientHomeComponent } from './patient-home/patient-home.component';
-import { AssistantHomeComponent } from './assistant-home/assistant-home.component';
 import { PatientProfileEditComponent } from './patient-profile-edit/patient-profile-edit.component';
 import { DoctorProfileEditComponent } from './doctor-profile-edit/doctor-profile-edit.component';
 import { AssistantProfileEditComponent } from './assistant-profile-edit/assistant-profile-edit.component';
@@ -29,6 +24,11 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { UpcomingAppointmentsComponent } from './upcoming-appointments/upcoming-appointments.component';
 import { SearchByUserNameComponent } from './search-by-user-name/search-by-user-name.component';
 import { PreviousRecordsComponent } from './previous-records/previous-records.component';
+import { UploadReportComponent } from './upload-report/upload-report.component';
+import { PatientPreviousComponent } from './patient-previous/patient-previous.component';
+import { PatientAppointmentStatusComponent } from './patient-appointment-status/patient-appointment-status.component';
+import { ViewReportComponent } from './view-report/view-report.component';
+import { PatientReportComponent } from './patient-report/patient-report.component';
 
 const appRoot: Routes = [
   {path: 'patient-appointment', component: PatientAppointmentComponent},
@@ -37,8 +37,13 @@ const appRoot: Routes = [
    {path: 'search-by-user-name', component: SearchByUserNameComponent},
    {path: 'upcoming-appointments', component: UpcomingAppointmentsComponent},
    {path: 'previous-records', component: PreviousRecordsComponent},
-   {path: '', component: SearchByUserNameComponent},
-   // {path: '', component: HospitalLoginComponent},
+   {path: 'upload-report', component: UploadReportComponent},
+   {path: 'patient-previous', component: PatientPreviousComponent},
+   {path: 'patient-appointment-status', component: PatientAppointmentStatusComponent},
+   {path: 'view-report', component: ViewReportComponent},
+   {path: 'patient-report', component: PatientReportComponent},
+   //{path: '', component: SearchByUserNameComponent},
+    {path: '', component: HospitalLoginComponent},
   {path: 'patient-login', component: PatientLoginComponent},
   {path: 'pharmacist-login', component: PharmacistLoginComponent},
   {path: 'doctor-login', component: DoctorLoginComponent},
@@ -47,8 +52,6 @@ const appRoot: Routes = [
   {path: 'pharmacist-register', component: PharmacistRegisterComponent},
   {path: 'doctor-register', component: DoctorRegisterComponent},
   {path: 'assistant-register', component: AssistantRegisterComponent},
-  {path: 'hospital-related', component: HospitalRelatedComponent},
-  {path: 'common-login',component: CommonLoginComponent},
   {path: 'patient-profile-edit',component: PatientProfileEditComponent},
   {path: 'assistant-profile-edit',component: AssistantProfileEditComponent},
   {path: 'doctor-profile-edit',component: DoctorProfileEditComponent},
@@ -69,12 +72,7 @@ const appRoot: Routes = [
     DoctorRegisterComponent,
     PharmacistRegisterComponent,
     PharmacistLoginComponent,
-    HomeComponent,
     HospitalLoginComponent,
-    HospitalRelatedComponent,
-    CommonLoginComponent,
-    PatientHomeComponent,
-    AssistantHomeComponent,
     PatientProfileEditComponent,
     DoctorProfileEditComponent,
     AssistantProfileEditComponent,
@@ -84,6 +82,11 @@ const appRoot: Routes = [
     UpcomingAppointmentsComponent,
     SearchByUserNameComponent,
     PreviousRecordsComponent,
+    UploadReportComponent,
+    PatientPreviousComponent,
+    PatientAppointmentStatusComponent,
+    ViewReportComponent,
+    PatientReportComponent,
   ],
   imports: [
 

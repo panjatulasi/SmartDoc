@@ -50,4 +50,11 @@ export class PatientService {
    registerPatientByGoogle(patient:any): any{
     return this.httpClient.post('smartDoc/webapi/myresource/registerPatientByGoogle',patient);
    }
+   getReports(){
+    console.log('Inside Service...'+localStorage.getItem('userName'));
+    return this.httpClient.get('smartDoc/webapi/myresource/getReports/'+localStorage.getItem('userName'));
+ }
+ sendMail(userName:any,subject:any,body:any): any{
+   return this.httpClient.get('smartDoc/webapi/myresource/sendMail/'+userName+'/'+subject+'/'+body);
+ }
 }

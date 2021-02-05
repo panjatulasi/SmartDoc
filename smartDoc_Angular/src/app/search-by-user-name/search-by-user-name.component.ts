@@ -13,6 +13,7 @@ export class SearchByUserNameComponent implements OnInit {
   appointments:any;
   patient:any;
   userName:any;
+  appointmentsDup:any;
   x:any;
   constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService) { 
     this.x = 0;
@@ -21,10 +22,20 @@ export class SearchByUserNameComponent implements OnInit {
 
   ngOnInit() {
   }
+  viewReport(userName){
+    localStorage.setItem('showUserName',userName);
+    this.router.navigate(['view-report']);
+    //this.refresh();
+  }
   searchByUserName(){
     console.log(this.userName);
     this.service.getAppointmentsByUserName(this.userName).subscribe((result: any) => {
-      console.log(result); this.appointments = result; });
+      console.log(result); this.appointmentsDup = result;
+      for(var i=0;i<this.appointmentsDup.length;i++){
+        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date).toISOString().slice(0,10);
+      }
+      this.appointments=this.appointmentsDup;
+     });
     this.service1.getPatientByUserName(this.userName).subscribe((result: any) => { console.log(result); this.patient = result; });
     console.log(this.patient);
     console.log(Object.keys(this.patient));

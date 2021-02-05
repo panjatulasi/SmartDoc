@@ -12,15 +12,28 @@ export class PreviousRecordsComponent implements OnInit {
   appointments:any;
   patient:any;
   userName:String;
+  appointmentsDup:any;
   constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService) {
       
    }
 
   ngOnInit() {
+    console.log("In ng 1st"+localStorage.getItem('showUserName'));
     this.service.getAppointmentsByUserName(localStorage.getItem('showUserName')).subscribe((result: any) => {
-      console.log(result); this.appointments = result; });
+      console.log(result); this.appointmentsDup = result;
+      for(var i=0;i<this.appointmentsDup.length;i++){
+        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date).toISOString().slice(0,10);
+      }
+      this.appointments=this.appointmentsDup;
+     });
     this.service1.getPatientByUserName(localStorage.getItem('showUserName')).subscribe((result: any) => { console.log(result); this.patient = result; });
-    //localStorage.setItem('showUserName',null);
+    localStorage.setItem('showUserName',null);
+    console.log("ng 2nd"+localStorage.getItem('showUserName'));
+  }
+  viewReport(userName){
+    localStorage.setItem('showUserName',userName);
+    this.router.navigate(['view-report']);
+    //this.refresh();
   }
 
 }

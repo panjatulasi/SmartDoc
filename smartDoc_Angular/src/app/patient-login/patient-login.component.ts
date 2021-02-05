@@ -21,6 +21,8 @@ export class PatientLoginComponent implements OnInit {
   obj:any;
 encryptedData : string = "";
 secretkey:string = "yoursecretkey";
+  patt: string;
+  result1: any;
 constructor(private router: Router, private patientService: PatientService) {
   this.user = {userName: '', password: ''};
   //this.patient = {patientId: '', patientName: '', userName:'', mobileNumber: '',age:'',gender:'', password: ''};
@@ -79,12 +81,11 @@ Decrypt() {
   }
 
   loginSubmit(loginForm: any): void {
-    // console.log(loginForm.userName+"Inside loginSubmit "+loginForm.password);
-    // this.dataToEncrypt = {password:loginForm.password};
-    // console.log("before:"+loginForm.password);
-    // this.Encrypt();
-    // loginForm.password=this.encryptedData;
-    // console.log("After:"+this.encryptedData);
+    this.patt = "@gmail.com";
+    this.result1 = loginForm.userName.match(this.patt);
+    console.log(loginForm.password);
+    console.log(this.result1)
+    if (this.result1 && loginForm.password !='') {
     this.patientService.getPatientByUserName(loginForm.userName).subscribe((result: any) => { 
     // this.patientService.getPatient(loginForm.userName,loginForm.password).subscribe((result: any) => {
       //console.log(result);
@@ -107,6 +108,11 @@ Decrypt() {
     })
 
   }
+  else if(loginForm.password == '')
+alert("Please enter the required(*) fields")
+else
+  alert("Please enter a valid gmail address");
+}
 }
   
   

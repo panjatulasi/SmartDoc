@@ -14,6 +14,7 @@
     <mapping class="com.ts.dto.Doctor"/>
     <mapping class="com.ts.dto.Patient"/> 
     <mapping class="com.ts.dto.Pharmacist"/>
-    <mapping class="com.ts.dto.Appointments"/>   
+    <mapping class="com.ts.dto.Appointments"/> 
+    <mapping class="com.ts.dto.Reports"/>   
   </session-factory>
 </hibernate-configuration>

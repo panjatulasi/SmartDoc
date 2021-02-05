@@ -37,7 +37,12 @@ Encrypt(){
       alert("registration failed :( ");
       else{
         localStorage.setItem('userName',this.doctor.userName);
-      this.router.navigate(['doctor-appointment']);} } );
+        localStorage.setItem('department',this.doctor.department);
+      localStorage.setItem('name',this.doctor.doctorName);
+      this.router.navigate(['doctor-appointment']);
+      
+    } } );
+       
     console.log(this.doctor);
   }
 

@@ -218,7 +218,7 @@
             </nav>
 
         <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
-            style="background-image: url(./assets/images/profileEdit.jpeg),linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3));background-blend-mode: overlay;"
+            style="background-image: url(./assets/images/profileEdit.jpeg),linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3));background-repeat: no-repeat; background-size: cover;min-height:1000px;height:fit-content;background-blend-mode: overlay;"
             data-stellar-background-ratio="0.5">
             <div class="search" style="padding-left:470px;padding-top:130px" >
             <input type="text" name="UserName" class="searchTerm" placeholder="Search Patient..." [(ngModel)]='userName'>
@@ -230,6 +230,9 @@
             <div style="padding-top:50px;padding-left:80px;padding-left:490px">
            <div style="clear:both"> <h3  style="float: left;width:40%;color:whitesmoke">Name : {{patient.patientName}}</h3><h3 style="float:right;width:60%;color:whitesmoke">Age : {{patient.age}}</h3></div>
            <div style="clear:both"> <h3  style="float: left;width:40%;color:whitesmoke">Mobile : {{patient.mobileNumber}}</h3><h3 style="float:right;width:60%;color:whitesmoke">Gender : {{patient.gender}}</h3></div>
+           <div class="col-md-2" style="padding-top:10px;padding-bottom: 10px;padding-left:0;">
+            <button class="btn-cta current form-control" (click)="viewReport(patient.userName)" style="border: 2px solid whitesmoke;color:black;background-color: whitesmoke;font-size: 20px;" type="submit">View Reports</button>
+        </div>
         </div>
         </div>
         <div *ngIf="patient == null && x== 1">
@@ -238,15 +241,14 @@
         </div>
         </div>
             <div *ngIf="appointments.length !== 0">
-            <div style="padding-top:60px;padding-right:1000px;padding-left:10px">
+            <div style="padding-top:60px;margin-left:auto;margin-right:auto;padding-left: auto;padding-right: auto;">
                 <table class="table table-bordered table-hover table-sm text-center table_legenda "
-                    style="width:1500px;padding-top:150px;margin-left:auto;margin-right:auto">
+                    style="width:1300px;padding-top:100px;margin-left:auto;margin-right:auto;padding-left: auto;padding-right: auto;">
                     <thead>
                         <tr class="text-white" style="background-color: hsl(36, 93%, 61%);">
-                            <th style="text-align:center;">Date</th>
-                            <th style="text-align:center;width: 370px;">Reason</th>
-                            <th style="text-align:center;width: 370px;">Prescription</th>
-                            <th style="text-align:center;">Reports</th>
+                            <th style="text-align:center;width: 200px;">Date</th>
+                            <th style="text-align:center;width: 500px;">Reason</th>
+                            <th style="text-align:center;width: 500px;">Prescription</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -254,7 +256,6 @@
                             <td style="text-align:center;color:whitesmoke">{{appointment.date}}</td>
                             <td><div style="width:100%; max-height:100px; overflow:auto;color:whitesmoke">{{appointment.reason}}</div></td>
                             <td><div style="width:100%; max-height:100px; overflow:auto;color:whitesmoke">{{appointment.prescription}}</div></td>
-                            <td><button (click)="viewReport(appointment)">View Report</button></td>
                         </tr>
                     </tbody>
                 </table>

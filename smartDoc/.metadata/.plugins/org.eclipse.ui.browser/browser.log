@@ -3,3 +3,33 @@ Jan 21, 2021 17:24:12.79 NEW SESSION
 Jan 21, 2021 17:24:12.79 [21336:1008:0121/172412.789:ERROR:device_event_log_impl.cc(211)] [17:24:12.789] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
 Jan 21, 2021 17:24:12.79 [21336:1008:0121/172412.792:ERROR:device_event_log_impl.cc(211)] [17:24:12.792] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
 Jan 21, 2021 17:34:10.61 [0121/173410.608:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+
+Jan 28, 2021 13:46:54.50 NEW SESSION
+Jan 28, 2021 13:46:54.50 [22024:21348:0128/134654.499:ERROR:device_event_log_impl.cc(211)] [13:46:54.499] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Jan 28, 2021 13:46:54.50 [22024:21348:0128/134654.500:ERROR:device_event_log_impl.cc(211)] [13:46:54.499] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Jan 28, 2021 13:48:44.84 [22024:21348:0128/134844.841:ERROR:CONSOLE(1)] "File system error: A requested file or directory could not be found at the time an operation was processed. when requesting entry ''", source: devtools://devtools/bundled/persistence/persistence.js (1)
+Jan 28, 2021 13:50:27.99 [22024:21348:0128/135027.989:ERROR:CONSOLE(1)] "File system error: A requested file or directory could not be found at the time an operation was processed. when requesting entry ''", source: devtools://devtools/bundled/persistence/persistence.js (1)
+Jan 28, 2021 13:56:41.34 [0128/135641.341:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+Jan 28, 2021 13:58:58.43 [22024:21348:0128/135858.439:ERROR:CONSOLE(1)] "File system error: A requested file or directory could not be found at the time an operation was processed. when requesting entry ''", source: devtools://devtools/bundled/persistence/persistence.js (1)
+Jan 28, 2021 14:02:32.27 [22024:21348:0128/140232.275:ERROR:CONSOLE(1)] "File system error: A requested file or directory could not be found at the time an operation was processed. when requesting entry ''", source: devtools://devtools/bundled/persistence/persistence.js (1)
+Jan 28, 2021 14:30:52.39 [22024:21348:0128/143052.390:ERROR:CONSOLE(1)] "File system error: A requested file or directory could not be found at the time an operation was processed. when requesting entry ''", source: devtools://devtools/bundled/persistence/persistence.js (1)
+
+Jan 30, 2021 21:25:09.79 NEW SESSION
+Jan 30, 2021 21:25:09.79 [22804:9720:0130/212509.795:ERROR:device_event_log_impl.cc(211)] [21:25:09.796] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Jan 30, 2021 21:25:09.79 [22804:9720:0130/212509.796:ERROR:device_event_log_impl.cc(211)] [21:25:09.796] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Jan 30, 2021 21:41:36.13 [22804:30996:0130/214136.133:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+Jan 30, 2021 21:41:42.56 [22804:30996:0130/214142.569:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+Jan 30, 2021 21:41:56.50 [22804:30996:0130/214156.501:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+Jan 30, 2021 21:42:13.66 [22804:30996:0130/214213.667:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+Jan 30, 2021 21:42:17.24 [22804:30996:0130/214217.240:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+Jan 30, 2021 21:42:19.49 [22804:9720:0130/214219.498:ERROR:device_event_log_impl.cc(211)] [21:42:19.496] USB: usb_service_win.cc:258 Failed to get device driver name: Element not found. (0x490)
+
+Feb 03, 2021 16:14:29.00 NEW SESSION
+Feb 03, 2021 16:14:29.00 [7008:5852:0203/161429.005:ERROR:device_event_log_impl.cc(211)] [16:14:29.004] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Feb 03, 2021 16:14:29.00 [7008:5852:0203/161429.005:ERROR:device_event_log_impl.cc(211)] [16:14:29.004] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Feb 03, 2021 17:05:02.05 [7008:29928:0203/170502.052:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+Feb 03, 2021 17:05:02.39 [7008:29928:0203/170502.394:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+
+Feb 05, 2021 13:49:02.49 NEW SESSION
+Feb 05, 2021 13:49:02.49 [4836:4988:0205/134902.496:ERROR:device_event_log_impl.cc(211)] [13:49:02.496] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Feb 05, 2021 13:49:02.50 [4836:4988:0205/134902.497:ERROR:device_event_log_impl.cc(211)] [13:49:02.497] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)

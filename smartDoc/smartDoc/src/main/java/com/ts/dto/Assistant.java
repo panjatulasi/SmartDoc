@@ -13,7 +13,6 @@ public class Assistant {
 	private int assistantId;
 	private String assistantName;
 	private String userName;
-	private String doctorUserName;
 	private String mobileNumber;
 	private String password;
 	
@@ -43,12 +42,6 @@ public class Assistant {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getDoctorUserName() {
-		return doctorUserName;
-	}
-	public void setDoctorUserName(String doctorUserName) {
-		this.doctorUserName = doctorUserName;
-	}
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
@@ -64,9 +57,9 @@ public class Assistant {
 	@Override
 	public String toString() {
 		return "Assistant [assistantId=" + assistantId + ", assistantName=" + assistantName + ", userName=" + userName
-				+ ", doctorUserName=" + doctorUserName + ", mobileNumber=" + mobileNumber + ", password=" + password
-				+ "]";
+				+ ", mobileNumber=" + mobileNumber + ", password=" + password + "]";
 	}
+	
 	
 	
 

@@ -13,12 +13,27 @@ export class DoctorAppointmentComponent implements OnInit {
   editObject:any;
   patient: any;
   userName: any;
+  body:any;
+  subject:any;
+  d:any;
+  appointmentsDup:any;
   constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService) { 
     //this.editObject={appointmentId:'',patientUserName:'',department:'',date:'',time:'',reason:'',accept:''};
   }
 
   ngOnInit() {
-    this.service.getAllAppointments(localStorage.getItem('department')).subscribe((result: any) => { console.log(result); this.appointments = result; });
+    this.service.getAllAppointments(localStorage.getItem('department')).subscribe((result: any) => { console.log(result); this.appointmentsDup = result;
+
+      for(var i=0;i<this.appointmentsDup.length;i++){
+        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date).toISOString().slice(0,10);
+      }
+      this.appointments=this.appointmentsDup;
+
+    });
+    console.log(this.appointments);
+    this.d=new Date(1611253800000);
+    console.log(this.d+"Date");
+
   }
   searchByUserName(){
     console.log(this.userName);
@@ -35,6 +50,11 @@ export class DoctorAppointmentComponent implements OnInit {
     
   }
   deleteAppointment(appointment : any) {
+    this.subject="SMARTDOC: Regarding Cancellation Of Appointment";
+    this.body="Hello,$Your appointment booked for "+appointment.date+" in the "+appointment.time+" with Dr."+localStorage.getItem('name')+" - The "+localStorage.getItem('department')+" had canceled since the doctor is busy with their Appointments. Please book your Appointment again.$Sorry for the inconvenience.";
+    this.service1.sendMail(appointment.patientUserName,this.subject,this.body).subscribe((result:any)=>{
+      console.log("Hii from mail");
+    })
     this.service.deleteAppointment(appointment).subscribe((result: any) => {
   const i = this.appointments.findIndex((element) => {return element.appointmentId === appointment.appointmentId;
       });
@@ -42,6 +62,11 @@ export class DoctorAppointmentComponent implements OnInit {
     });
   }
   updateAppointment(appointment:any) {
+    this.subject="SMARTDOC: Regarding Approval Of Appointment";
+    this.body="Hello,$Your appointment booked for "+appointment.date+" in the "+appointment.time+" with Dr."+localStorage.getItem('name')+" - The "+localStorage.getItem('department')+" was approved.$Thank you for choosing our Hospital. "
+    this.service1.sendMail(appointment.patientUserName,this.subject,this.body).subscribe((result:any)=>{
+      console.log("Hii from mail");
+    })
     this.editObject=appointment;
     this.editObject.accept='Yes';
     this.service.updateAppointment(this.editObject).subscribe();

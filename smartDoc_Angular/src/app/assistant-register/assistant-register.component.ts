@@ -16,9 +16,9 @@ export class AssistantRegisterComponent implements OnInit {
 secretkey:string = "yoursecretkey";
 dataToEncrypt : any;
   constructor(private router: Router,private service: AssistantService) {
-    this.assistant = {assistantId: '', assistantName: '', userName:'', mobileNumber: '', password: '', doctorUserName: ''
+    this.assistant = {assistantId: '', assistantName: '', userName:'', mobileNumber: '', password: ''};
     //doctor: {doctorUserName: ''}
-  };
+  
   }
   Encrypt(){
     this.encryptedData=CryptoJS.AES.encrypt(JSON.stringify(this.dataToEncrypt),this.secretkey).toString();

@@ -23,12 +23,17 @@ public class AppointmentsDao {
 	}
 	public List<Appointments> getUpcomingAppointments(String department) {
 		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where department='"+department+"' and status is NULL and accept='Yes'");
-		System.out.println("Inside Upcoming Appointments ..."+appointments);
+		System.out.println("Inside Doctor Upcoming Appointments ..."+appointments);
 		return appointments;
 	}
 	public List<Appointments> getAppointmentsByUserName(String userName) {
 		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where patientUserName='"+userName+"' and status is not NULL");
-		System.out.println("Inside getAppointmentsByUserName ..."+appointments);
+		System.out.println("Inside getAppointmentsByUserName used in previous Appointments  ..."+appointments);
+		return appointments;
+	}
+	public List<Appointments> getAppointmentsByUserNameWithNullStatus(String userName) {
+		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where patientUserName='"+userName+"' and status is NULL");
+		System.out.println("Inside getAppointmentsByUserName used in patient Upcoming Appointments  ..."+appointments);
 		return appointments;
 	}
 	public void deleteAppointment(Appointments appointment) {

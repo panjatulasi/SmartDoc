@@ -13,15 +13,28 @@ export class UpcomingAppointmentsComponent implements OnInit {
   editObject:any;
   patient:any;
   userName:String;
+  subject:any;
+  body:any;
+  appointmentsDup:any;
   constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService) { }
 
   ngOnInit() {
-    this.service.getUpcomingAppointments(localStorage.getItem('department')).subscribe((result: any) => { console.log(result); this.appointments = result; });
+    this.service.getUpcomingAppointments(localStorage.getItem('department')).subscribe((result: any) => { console.log(result); this.appointmentsDup = result;
+      for(var i=0;i<this.appointmentsDup.length;i++){
+        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date).toISOString().slice(0,10);
+      }
+      this.appointments=this.appointmentsDup;
+     });
     localStorage.setItem('showUserName',null);
   }
   showRecords(userName){
     localStorage.setItem('showUserName',userName);
     this.router.navigate(['previous-records']);
+    //this.refresh();
+  }
+  viewReport(userName){
+    localStorage.setItem('showUserName',userName);
+    this.router.navigate(['view-report']);
     //this.refresh();
   }
   searchByUserName(){
@@ -40,6 +53,12 @@ export class UpcomingAppointmentsComponent implements OnInit {
     //this.refresh();
   }
   updateAppointment(appointment:any) {
+    this.subject="SMARTDOC: About Tablets";
+    this.body="Hello,$Your Appointment booked for "+appointment.date+" in the "+appointment.time+" with Dr."+localStorage.getItem('name')+" - The "+localStorage.getItem('department')+" was completed successfully.$Please take the below medicines : $"+appointment.prescription+"$Thank you for choosing our Hospital. ";
+    console.log(this.body);
+    this.service1.sendMail(appointment.patientUserName,this.subject,this.body).subscribe((result:any)=>{
+      console.log("Hii from mail");
+    })
     this.editObject=appointment;
     this.editObject.status='Yes';
     this.service.updateAppointment(this.editObject).subscribe();

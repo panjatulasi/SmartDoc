@@ -45,4 +45,17 @@ export class AssistantService {
    getAssistantByUserName(userName: String) {
     return this.httpClient.get('smartDoc/webapi/myresource/getAssistantByUserName/' + userName);
    }
+   uploadImage(fileForm: any, fileToUpload: File) {
+    // const endpoint='RESTAPI/webapi/myresource/';
+    console.log("Inside service for file upload");
+    const formData: FormData = new FormData();
+    formData.append('report', fileToUpload, fileToUpload.name);
+    formData.append('userName', fileForm.userName);
+    formData.append('date', fileForm.date);
+    formData.append('description', fileForm.description);
+
+
+    return this.httpClient.post('smartDoc/webapi/myresource/uploadImage', formData);
+  }
+
 }

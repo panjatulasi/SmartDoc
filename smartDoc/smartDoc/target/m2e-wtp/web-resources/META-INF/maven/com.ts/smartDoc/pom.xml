@@ -45,6 +45,11 @@
 			<!-- artifactId>jersey-container-servlet</artifactId -->
 		</dependency>
 		<dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>1.4.01</version>
+    </dependency>
+		<dependency>
 			<groupId>org.glassfish.jersey.inject</groupId>
 			<artifactId>jersey-hk2</artifactId>
 		</dependency>

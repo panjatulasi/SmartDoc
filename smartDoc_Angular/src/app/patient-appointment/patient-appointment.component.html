@@ -24,7 +24,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-    
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Animate.css -->
     <link rel="stylesheet" href="./assets/css/animate.css">
@@ -54,6 +54,127 @@
     <!--[if lt IE 9]>
 <script src="js/respond.min.js"></script>
 <![endif]-->
+    <style>
+        .table_legenda {
+            table-layout: fixed;
+        }
+
+        .table_legenda td {
+            overflow-wrap: break-word;
+            overflow-y: auto;
+            overflow-x: hidden;
+
+        }
+    </style>
+    <style>
+        .dropbtn {
+          background-color:transparent;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          /* border: 4px; */
+          cursor: pointer;
+          border: 2px solid rgba(255, 255, 255, 0.5);
+  padding: 4px 20px;
+  color: #fff;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+        }
+        
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: rgba(0,0,0,0.5);
+          color:black;
+          min-width: 145px;
+          
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content a {
+            
+          color: #FBB448;
+          /* padding: 12px 12px; */
+          height:8px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        .dropdown-content a:hover {background-color:  #FBB448}
+        
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+        
+        .dropdown:hover .dropbtn {
+            background: #fff;
+  color: #FBB448;
+        }
+        </style>
+        <style>
+            .search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 150px;
+  background-color:transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-right: none;
+  padding: 5px;
+  height: 39px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: white;
+}
+::placeholder{
+    color:white;
+    opacity:1;
+}
+
+.searchTerm:focus{
+  color: black;
+}
+
+.searchButton {
+  width: 40px;
+  height: 39px;
+  border: 2px solid rgba(255, 255, 255, 0.5);;
+  background: white;
+  text-align: center;
+  color: black;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+        </style>
 
 
 </head>
@@ -63,25 +184,34 @@
 
 
         <!-- <div class="page-inner"> -->
-        <nav class="gtco-nav" role="navigation">
-            <div class="gtco-container">
-                <div class="row">
-                    <div class="col-sm-4 col-xs-12">
-                        <div id="gtco-logo"><a routerLink="../">SmartDoc</a></div>
-                    </div>
-                    <div class="col-xs-6 text-right menu-1">
-                        <ul>
-                            <li class="btn-cta"><a routerLink="../patient-appointment"><span>Appointments</span></a>
-                            </li>
-                            <li class="btn-cta"><a routerLink="../patient-profile-edit"><span>Edit Profile</span></a>
-                            </li>
-                            <li class="btn-cta"><a routerLink="../hospital-login"><span>Logout</span></a></li>
-                        </ul>
+            <nav class="gtco-nav" role="navigation">
+                <div class="gtco-container">
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12">
+                            <div id="gtco-logo"><a routerLink="../">SmartDoc</a></div>
+                        </div>
+                        <div class="col-xs-6 text-right menu-1">
+                            <ul>
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Appointments</button>
+                                        <div class="dropdown-content ">
+                                            <a routerLink="../patient-appointment"
+                                                style="text-align: center;padding-top: 7px;">Book</a>
+                                            <a routerLink="../patient-appointment-status"
+                                                style="text-align: center;padding-top: 7px;">Status</a>
+                                            <a routerLink="../patient-previous"
+                                                style="text-align: center;padding-top: 7px;">Previous</a>
+                                        </div>
+                                    </div>
+                                    </li>
+                                <li class="btn-cta"><a routerLink="../patient-profile-edit"><span>Edit Profile</span></a></li>
+                                <li class="btn-cta"><a routerLink="../hospital-login"><span>Logout</span></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-
+            </nav>
         <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
     style="background-image: url(./assets/images/profileEdit.jpeg)" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>

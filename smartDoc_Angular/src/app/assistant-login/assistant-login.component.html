@@ -99,19 +99,19 @@
 											<form #loginForm="ngForm" class="form-group" (ngSubmit)="loginSubmit(loginForm.value)" validate>
 												<div class="row form-group">
 													<div class="col-md-12">
-                                                        <label>Username</label>
-                                                        <input type="text" class="form-control" name="userName" value="userName" ngModel #userName="ngModel" required
-                                                 placeholder="Username">
+                                                        <label>Email*</label>
+                                                        <input type="email" class="form-control" name="userName" value="userName" ngModel #userName="ngModel" required
+                                                 placeholder="email">
 													</div>
 													<div class="col-md-12">
-														<label>Password</label>
+														<label>Password*</label>
 														<input type="password" class="form-control" placeholder="Password"  value="password" name="password" ngModel #password="ngModel" required >
                                                 	</div>
 												</div>
 												
 												<div class="row form-group">
 													<div class="col-md-12">
-														<input type="submit" class="btn btn-primary btn-block" value="Login" >
+														<button type="submit" class="btn btn-primary btn-block" value="Login" >Login</button>
 													</div>
                                                 </div>
                                                 <div class="row form-group" style="padding-top:5px;">

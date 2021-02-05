@@ -1,8 +1,19 @@
 package com.ts;
 import com.ts.db.HibernateTemplate;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 //import javax.crypto.SecretKey;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -14,16 +25,22 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
+
 import com.ts.dao.AppointmentsDao;
 import com.ts.dao.AssistantDao;
 import com.ts.dao.DoctorDao;
 import com.ts.dao.PatientDao;
 import com.ts.dao.PharmacistDao;
+import com.ts.dao.ReportsDao;
 import com.ts.dto.Appointments;
 import com.ts.dto.Assistant;
 import com.ts.dto.Doctor;
 import com.ts.dto.Patient;
 import com.ts.dto.Pharmacist;
+import com.ts.dto.Reports;
+
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -74,7 +91,7 @@ public class MyResource {
 		//patient.setPassword(patient.getPassword());
 		//}
 		//catch(Exception ex) {
-			//System.out.println(ex);
+		//System.out.println(ex);
 		//}
 		PatientDao patientDao = new PatientDao();
 		return patientDao.register(patient);
@@ -89,13 +106,13 @@ public class MyResource {
 		//patient.setPassword(patient.getPassword());
 		//}
 		//catch(Exception ex) {
-			//System.out.println(ex);
+		//System.out.println(ex);
 		//}
-		
+
 		AppointmentsDao appointmentsDao = new AppointmentsDao();
 		return appointmentsDao.register(appointments);
 	}
-	
+
 	@Path("getAllAppointments/{department}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -103,6 +120,7 @@ public class MyResource {
 
 		AppointmentsDao appointmentsDAO = new AppointmentsDao();
 		List <Appointments> appointmentList = appointmentsDAO.getAllAppointments(department);
+		System.out.println(appointmentList);
 
 		return appointmentList;
 	}
@@ -113,8 +131,10 @@ public class MyResource {
 
 		DoctorDao doctorDao = new DoctorDao();
 		List <Doctor> doctorList = doctorDao.getAllDepartments();
+		
 
 		return doctorList;
+		
 	}
 	@Path("getUpcomingAppointments/{department}")
 	@GET
@@ -130,33 +150,33 @@ public class MyResource {
 	@DELETE
 	public void deleteAppointment(@PathParam("appointmentId") int appointmentId) {
 		System.out.println("Data Received in Delete : " + appointmentId);
-		
+
 		AppointmentsDao appointmentsDao = new AppointmentsDao();
 		Appointments appointment = appointmentsDao.getAppointment(appointmentId);
-		
+
 		appointmentsDao.deleteAppointment(appointment);
 		System.out.println("Employee record deleted successfully..!!");
 	}
-	
+
 	@Path("updateAppointment")
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void updateEmp(Appointments appointments) {
 		System.out.println("Data Received in Update : " + appointments);
-		
+
 		AppointmentsDao appointmentsDao = new AppointmentsDao();
 		appointmentsDao.updateAppointment(appointments);
-		
+
 		System.out.println("Employee record updated successfully..!!");
 	}
 
-	
+
 	@Path("getPatientByUserName/{userName}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Patient getPatientByUserName(@PathParam("userName") String userName) {
 		System.out.println("Patient UserName!" + userName);
-		
+
 		PatientDao patientDao = new PatientDao();
 		Patient patient = (Patient)patientDao.getPatientByUserName(userName);
 		return patient;
@@ -166,9 +186,20 @@ public class MyResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List <Appointments> getAppointmentsByUserName(@PathParam("userName") String userName) {
 		System.out.println("Patient UserName!" + userName);
-		
+
 		AppointmentsDao appointmentsDao = new AppointmentsDao();
 		List <Appointments> appointments = (List<Appointments>)appointmentsDao.getAppointmentsByUserName(userName);
+		System.out.println(appointments);
+		return appointments;
+	}
+	@Path("getUpcommingPatientAppointmentsByUserName/{userName}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List <Appointments> getUpcommingPatientAppointmentsByUserName(@PathParam("userName") String userName) {
+		System.out.println("Patient UserName!" + userName);
+
+		AppointmentsDao appointmentsDao = new AppointmentsDao();
+		List <Appointments> appointments = (List<Appointments>)appointmentsDao.getAppointmentsByUserNameWithNullStatus(userName);
 		System.out.println(appointments);
 		return appointments;
 	}
@@ -180,7 +211,7 @@ public class MyResource {
 		PatientDao patientDao = new PatientDao();
 		return patientDao.updatePatient(patient);
 		//return x;
-		
+
 	}
 
 	@Path("registerDoctor")
@@ -203,7 +234,7 @@ public class MyResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public int registerPharmacist(Pharmacist pharmacist) {
-		
+
 		PharmacistDao pharmacistDao = new PharmacistDao();
 		return pharmacistDao.register(pharmacist);
 	}
@@ -247,6 +278,50 @@ public class MyResource {
 		Assistant assistant = (Assistant)assistantDao.getAssistantByUserName(userName);
 		return assistant;
 	}
+	@Path("uploadImage")
+	@POST
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public int uploadImage(@FormDataParam("report") InputStream fileInputStream,@FormDataParam("report") FormDataContentDisposition
+			formDataContentDisposition, @FormDataParam("userName") String userName,@FormDataParam("description") String description, @FormDataParam("date") java.sql.Date date) throws IOException {
+		System.out.println("Inside Upload");
+		int read = 0;
+		byte[] bytes = new byte[1024];
+
+		String path = this.getClass().getClassLoader().getResource("").getPath();
+		System.out.println("path"+path);
+
+		String pathArr[] = path.split("/WEB-INF/classes/");
+		System.out.println("Path array"+pathArr[0]);
+
+		FileOutputStream out = new FileOutputStream(new File(pathArr[0]+"/image/", formDataContentDisposition.getFileName()));
+
+
+		while((read = fileInputStream.read(bytes)) != -1){	
+
+			out.write(bytes,0,read);
+		}
+		out.flush();
+		out.close();
+
+		Reports reports = new Reports();
+		reports.setUserName(userName);
+		reports.setDate(date);
+		reports.setDescription(description);
+		reports.setReport(formDataContentDisposition.getFileName());
+		ReportsDao reportDao = new ReportsDao();
+		return reportDao.addReport(reports);
+	}
+	@Path("getReports/{userName}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Reports> getReports(@PathParam("userName") String userName) {
+		Reports reports = new Reports();
+		reports.setUserName(userName);
+		ReportsDao reportsDao = new ReportsDao();
+		List <Reports> reportsList = reportsDao.getAllReports(userName);
+
+		return reportsList;
+	}
 	@Path("updateAssistant")
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -255,7 +330,7 @@ public class MyResource {
 		AssistantDao assistantDao = new AssistantDao();
 		return assistantDao.updateAssistant(assistant);
 		//return x;
-		
+
 	}
 	@Path("getDoctorByUserName/{userName}")
 	@GET
@@ -274,7 +349,7 @@ public class MyResource {
 		DoctorDao doctorDao = new DoctorDao();
 		return doctorDao.updateDoctor(doctor);
 		//return x;
-		
+
 	}
 	@Path("getPharmacistByUserName/{userName}")
 	@GET
@@ -293,7 +368,64 @@ public class MyResource {
 		PharmacistDao pharmacistDao = new PharmacistDao();
 		return PharmacistDao.updatePharmacist(pharmacist);
 		//return x;
-		
+
 	}
+	@Path("sendMail/{userName}/{subject}/{body}")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sendMail(@PathParam("userName") String userName,@PathParam("subject") String subject1,@PathParam("body") String body1) throws MessagingException {
+ String subject=subject1;
+ String body=body1;
+ String email=userName;
+String host = "smtp.gmail.com";
+String from = "smartdocdoctor@gmail.com";
+String pass = "smartdoc@123";
+
+Properties props = System.getProperties();
+
+props.put("mail.smtp.starttls.enable", "true"); // added this line
+props.put("mail.smtp.host", host);
+props.put("mail.smtp.user", from);
+props.put("mail.smtp.password", pass);
+props.put("mail.smtp.port", "587");
+props.put("mail.smtp.auth", "true");
+
+String[] to = {email}; // added this line
+System.out.println("Inside Mail");
+Session session = Session.getDefaultInstance(props, null);
+MimeMessage message = new MimeMessage(session);
+message.setFrom(new InternetAddress(from));
+
+InternetAddress[] toAddress = new InternetAddress[to.length];
+
+// To get the array of addresses
+
+for( int i=0; i < to.length; i++ )
+{
+// changed from a while loop
+toAddress[i] = new InternetAddress(to[i]);
+}
+
+for( int i=0; i < toAddress.length; i++)
+{
+// changed from a while loop
+message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+}
+
+message.setSubject(subject);
+body=body.replace("$", "\n");
+message.setText(body);
+
+System.out.println(body+"inside mail");
+
+Transport transport = session.getTransport("smtp");
+
+transport.connect(host, from, pass);
+transport.sendMessage(message, message.getAllRecipients());
+
+transport.close();
+
+        return "Successful";
+    }
 
 }

@@ -70,6 +70,8 @@
                     </div>
                     <div class="col-xs-8 text-right menu-1">
                         <ul>
+                            <li class="btn-cta current"><a routerLink="../upload-report"><span>Upload Report</span></a> </li>
+                            <li class="btn-cta current"><a routerLink="../assistant-profile-edit"><span>Edit Profile</span></a> </li>
                             <li class="btn-cta current"><a routerLink="../hospital-login"><span>Logout</span></a></li>
                         </ul>
                     </div>
@@ -118,14 +120,6 @@
                                                         class="form-control">
                                                         </div>
                                                     </div>
-                                                    <div class="row form-group">
-                                                        <div class="col-md-12">
-                                                            <label>Password</label>
-                                                            <input type="password" name="password" value={{assistant.password}} [(ngModel)]="editObject.password"
-                                                        class="form-control">
-                                                        </div>
-                                                    </div>
-
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <input type="submit" class="btn btn-primary btn-block"

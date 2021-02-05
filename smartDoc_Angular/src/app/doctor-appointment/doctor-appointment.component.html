@@ -217,14 +217,14 @@ transform: translate(-50%, -50%);
             </nav>
 
         <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
-    style="background-image: url(./assets/images/profileEdit.jpeg),linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3));background-blend-mode: overlay;" data-stellar-background-ratio="0.5">
+    style="background-image: url(./assets/images/profileEdit.jpeg),linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3));background-blend-mode: overlay;background-repeat: no-repeat; background-size: cover;min-height:1000px;height:fit-content;background-blend-mode: overlay;" data-stellar-background-ratio="0.5">
     
     
     <div style="padding-top:150px;padding-right:1000px;padding-left:10px">
         <table class="table table-bordered table-hover table-sm text-center table_legenda " style="width:1500px;padding-top:150px;margin-left:auto;margin-right:auto">
             <thead>
                 <tr class="text-white" style="background-color: hsl(36, 93%, 61%);">
-                    <th style="text-align:center;">UserName</th>
+                    <th style="text-align:center;">Email</th>
                     <th style="text-align:center;">Date</th>
                     <th style="text-align:center;">Time</th>
                     <th style="text-align:center;width: 420px;">Reason</th>
@@ -235,6 +235,7 @@ transform: translate(-50%, -50%);
             <tbody>
                 <tr *ngFor='let appointment of appointments' style="background-color: rgba(0,0,0,0.5);">
                     <td style="text-align:center;color:whitesmoke">{{appointment.patientUserName}}</td>
+                    
                     <td style="text-align:center;color:whitesmoke">{{appointment.date}}</td>
                     <td style="text-align:center;color:whitesmoke">{{appointment.time}}</td>
                     <td><div style="width:100%; max-height:100px; overflow:auto;color:whitesmoke">{{appointment.reason}}</div></td>

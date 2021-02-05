@@ -17,6 +17,7 @@ export class HospitalLoginComponent implements OnInit {
   }
   loginSubmit(loginForm: any): void {
     console.log(loginForm.loginId,loginForm.password)
+    
     if (loginForm.loginId === 'admin' && loginForm.password === 'admin') {
       console.log("HIIIIIIIii")
       this.router.navigate(['doctor-login']);

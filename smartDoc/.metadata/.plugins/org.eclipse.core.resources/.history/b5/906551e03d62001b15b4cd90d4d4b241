@@ -1,0 +1,19 @@
+package com.ts.dao;
+
+import java.util.Date;
+import java.util.List;
+
+import com.ts.db.HibernateTemplate;
+import com.ts.dto.Reports;
+
+public class ReportsDao {
+	public int addReport(Reports report) {
+		System.out.println(report); 
+		return HibernateTemplate.addObject(report);
+	}
+	public List<Reports> getAllItemDetails(String userName,Date date) {
+		List<Reports> report=(List)HibernateTemplate.getObjectListByQuery("From Reports where userName := userName and date :=date ");
+		return report;	
+	}
+
+}
