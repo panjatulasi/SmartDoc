@@ -63,7 +63,7 @@
 			
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
-					<div id="gtco-logo"><a routerLink="../">SmartDoc</a></div>
+					<div id="gtco-logo"><a (click)="logOut()">SmartDoc</a></div>
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
@@ -96,12 +96,12 @@
 											<form #loginForm="ngForm" class="form-group" (ngSubmit)="loginSubmit(loginForm.value)" validate>
 												<div class="row form-group">
 													<div class="col-md-12">
-                                                        <label>*Email</label>
+                                                        <label>Email</label>
                                                         <input type="email" class="form-control" name="userName" value="userName" ngModel #userName="ngModel" required
                                                  placeholder="Email">
 													</div>
 													<div class="col-md-12">
-														<label>*Password</label>
+														<label>Password</label>
 														<input type="password" class="form-control" placeholder="Password"  value="password" name="password" ngModel #password="ngModel" required >
 													</div>
 												</div>
@@ -115,10 +115,10 @@
                                                     <div class="col-md-2">
                                                         <a routerLink="../patient-register" style="font-size: 17px;">Register</a>
                                                     </div>
-                                                    <div style="padding-left:200px ;">
+                                                    <!-- <div style="padding-left:200px ;">
                 
                                                             <img #loginRef (click)="googleInitialize()" alt="Login with Google" src="./assets/images/google_icon.png" style="height: 35px;width: 35px;border-radius: 50px;" >
-                                                    </div>
+                                                    </div> -->
 
                                                 </div>
 											</form>	

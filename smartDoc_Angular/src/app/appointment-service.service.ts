@@ -39,5 +39,8 @@ report:any;
     console.log('Inside Service...'+localStorage.getItem('showUserName'));
     return this.httpClient.get('smartDoc/webapi/myresource/getReports/'+localStorage.getItem('showUserName'));
  }
+ getMaxId():any{
+  return this.httpClient.get('smartDoc/webapi/myresource/getMaxId/');
+ }
 
 }

@@ -188,7 +188,7 @@
                 <div class="gtco-container">
                     <div class="row">
                         <div class="col-sm-4 col-xs-12">
-                            <div id="gtco-logo"><a routerLink="../">SmartDoc</a></div>
+                            <div id="gtco-logo"><a (click)="logOut()">SmartDoc</a></div>
                         </div>
                         <div class="col-xs-6 text-right menu-1">
                             <ul>
@@ -206,7 +206,7 @@
                                     </div>
                                     </li>
                                 <li class="btn-cta"><a routerLink="../patient-profile-edit"><span>Edit Profile</span></a></li>
-                                <li class="btn-cta"><a routerLink="../hospital-login"><span>Logout</span></a></li>
+                                <li class="btn-cta"><a (click)="logOut()"><span>Logout</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -245,21 +245,23 @@
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-4">
                                                             <label>Age</label>
                                                             <input type="number" class="form-control" name="age"
                                                                 value={{editObject.age}} [(ngModel)]="editObject.age"
                                                                 class="form-control">
                                                         </div>
-                                                    </div>
-                                                    <div class="row form-group">
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-8">
                                                             <label>Gender</label>
-                                                            <input type="text" class="form-control" name="gender"
-                                                                value={{editObject.gender}}
-                                                                [(ngModel)]="editObject.gender" class="form-control">
+                                                            <select id="activities" name="gender" (change)='update(gender.value)' style="height:45px;" class="form-control" [(ngModel)]='editObject.gender'>
+                                                                <option value={{editObject.gender}} disabled selected >{{editObject.gender}}</option>
+                                                                <option style="color:gray;"value="Male">Male</option>
+                                                                <option style="color:gray;"value="Female">Female</option>
+                                                                <option style="color:gray;"value="Others">Others</option>
+                                                                </select>
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label>Phone Number</label>
@@ -319,6 +321,12 @@
 
     <!-- Main -->
     <script src="js/main.js"></script>
+    <script>
+        function update(dept){
+            editObject.gender = dept;
+
+        }
+        </script>
 
 </body>
 

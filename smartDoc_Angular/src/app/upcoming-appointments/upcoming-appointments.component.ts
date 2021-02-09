@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppointmentServiceService } from '../appointment-service.service';
+import { AuthServiceService } from '../auth-service.service';
 import { PatientService } from '../patient.service';
 
 @Component({
@@ -16,16 +17,21 @@ export class UpcomingAppointmentsComponent implements OnInit {
   subject:any;
   body:any;
   appointmentsDup:any;
-  constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService) { }
+  constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService,private service2: AuthServiceService) { }
 
   ngOnInit() {
     this.service.getUpcomingAppointments(localStorage.getItem('department')).subscribe((result: any) => { console.log(result); this.appointmentsDup = result;
       for(var i=0;i<this.appointmentsDup.length;i++){
-        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date).toISOString().slice(0,10);
+        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date+86400000).toISOString().slice(0,10);
       }
       this.appointments=this.appointmentsDup;
      });
     localStorage.setItem('showUserName',null);
+  }
+  logOut(): void{
+    console.log("From SmartDoc");
+    this.service2.setDoctorLoggedOut();
+    this.router.navigate(['../hospital-login']);
   }
   showRecords(userName){
     localStorage.setItem('showUserName',userName);
@@ -60,12 +66,18 @@ export class UpcomingAppointmentsComponent implements OnInit {
       console.log("Hii from mail");
     })
     this.editObject=appointment;
+    console.log(this.editObject);
+    if(this.editObject.reason == '' || this.editObject.prescription ==null){
+      alert("Please enter all the fields")
+    }
+    else {
     this.editObject.status='Yes';
     this.service.updateAppointment(this.editObject).subscribe();
     this.refresh();
     //this.router.navigate(['doctor-appointment']); 
     console.log(this.editObject);
   }
+}
   refresh(){
     window.location.reload();
 }

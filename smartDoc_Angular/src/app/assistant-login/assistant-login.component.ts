@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssistantService } from './../assistant.service';
 import * as CryptoJS from 'crypto-js';
 import { stringify } from '@angular/compiler/src/util';
 import { verifyHostBindings } from '@angular/compiler';
+import { AuthServiceService } from '../auth-service.service';
 
 @Component({
   selector: 'app-assistant-login',
@@ -18,7 +19,7 @@ export class AssistantLoginComponent implements OnInit {
   result1: any;
   encryptedData: string = "";
   secretkey: string = "yoursecretkey";
-  constructor(private router: Router, private assistantService: AssistantService) {
+  constructor(private router: Router, private assistantService: AssistantService,private service: AuthServiceService) {
     this.user = { userName: '', password: '' };
   }
   Decrypt() {
@@ -29,6 +30,11 @@ export class AssistantLoginComponent implements OnInit {
   }
   myFunction(str: any) {
 
+  }
+  logOut(): void{
+    console.log("From SmartDoc");
+    this.service.setHospitalLoggedOut();
+    this.router.navigate(['../hospital-login']);
   }
 
   loginSubmit(loginForm: any): void {
@@ -47,8 +53,9 @@ export class AssistantLoginComponent implements OnInit {
           this.Decrypt();
           if (this.obj.password === loginForm.password) {
             localStorage.setItem('userName', loginForm.userName);
+            this.service.setAssistantLoggedIn();
 
-            this.router.navigate(['assistant-profile-edit']);
+            this.router.navigate(['upload-report']);
           }
           else {
             alert('Invalid Credentials');
@@ -57,7 +64,7 @@ export class AssistantLoginComponent implements OnInit {
       })
     }
     else if(loginForm.password == '')
-    alert("Please enter the required(*) fields")
+    alert("Please enter all the fields")
     else
       alert("Please enter a valid gmail address");
   }

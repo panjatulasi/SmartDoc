@@ -24,6 +24,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link ref="stylesheet" type="text/css" href="dist/snackbar.min.css" /> 
+    <script src="dist/snackbar.min.js"></script>
 
     <!-- Animate.css -->
     <link rel="stylesheet" href="./assets/css/animate.css">
@@ -66,13 +68,13 @@
 
                 <div class="row">
                     <div class="col-sm-4 col-xs-12">
-                        <div id="gtco-logo"><a routerLink="../">SmartDoc</a></div>
+                        <div id="gtco-logo"><a (click)="logOut()">SmartDoc</a></div>
                     </div>
                     <div class="col-xs-8 text-right menu-1">
                         <ul>
                             <li class="btn-cta current"><a routerLink="../doctor-login"><span>Doctor</span></a></li>
                             <li class="btn-cta current"><a routerLink="../assistant-login"><span>Assistant</span></a></li>
-                            <li class="btn-cta current"><a routerLink="../pharmacist-login"><span>Pharmacist</span></a></li>
+                            <!-- <li class="btn-cta current"><a routerLink="../pharmacist-login"><span>Pharmacist</span></a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -86,8 +88,7 @@
             <div class="gtco-container" style="padding-top:-12px;">
                 <div class="row">
                     <div class="col-md-12 col-md-offset-0 text-left">
-
-
+                        
                         <div class="row" style="padding-top:110px;padding-bottom: 15px;"> 
                         <div class="col-md-7 mt-text ">
                         </div>
@@ -138,7 +139,7 @@
 
                                                     <div class="col-md-12">
                                                         <label>Confirm Password</label>
-                                                        <input type="password" class="form-control" placeholder="Confirm Password" name="doctorConfirmPassword">
+                                                        <input type="password" class="form-control" placeholder="Confirm Password" name="doctorConfirmPassword"  [(ngModel)]='confirmPassword'>
                                              
                                                     </div>
                                                 </div>

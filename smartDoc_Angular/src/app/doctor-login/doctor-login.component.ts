@@ -4,6 +4,7 @@ import { DoctorService } from './../doctor.service';
 import * as CryptoJS from 'crypto-js';
 import { stringify } from '@angular/compiler/src/util';
 import { verifyHostBindings } from '@angular/compiler';
+import { AuthServiceService } from '../auth-service.service';
 
 @Component({
   selector: 'app-doctor-login',
@@ -18,7 +19,7 @@ encryptedData : string = "";
 secretkey:string = "yoursecretkey";
   patt: string;
   result1: any;
-  constructor(private router: Router, private doctorService: DoctorService) {
+  constructor(private router: Router, private doctorService: DoctorService,private service: AuthServiceService) {
     this.user = {userName: '', password: ''};
   }
   Decrypt() {
@@ -26,6 +27,11 @@ secretkey:string = "yoursecretkey";
      this.obj = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
   }
   ngOnInit(): void {
+  }
+  logOut(): void{
+    console.log("From SmartDoc");
+    this.service.setHospitalLoggedOut();
+    this.router.navigate(['../hospital-login']);
   }
   loginSubmit(loginForm: any): void {
     this.patt = "@gmail.com";
@@ -45,7 +51,7 @@ secretkey:string = "yoursecretkey";
         localStorage.setItem('userName',loginForm.userName);
         localStorage.setItem('department',result.department);
         localStorage.setItem('name',result.doctorName);
-
+        this.service.setDoctorLoggedIn();
         this.router.navigate(['doctor-appointment']);
         }
         else {
@@ -55,7 +61,7 @@ secretkey:string = "yoursecretkey";
     })
   }
   else if(loginForm.password == '')
-alert("Please enter the required(*) fields")
+alert("Please enter all the fields")
 else
   alert("Please enter a valid gmail address");
 }

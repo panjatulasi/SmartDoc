@@ -188,7 +188,7 @@
                 <div class="gtco-container">
                     <div class="row">
                         <div class="col-sm-4 col-xs-12">
-                            <div id="gtco-logo"><a routerLink="../">SmartDoc</a></div>
+                            <div id="gtco-logo"><a (click)="logOut()">SmartDoc</a></div>
                         </div>
                         <div class="col-xs-6 text-right menu-1">
                             <ul>
@@ -206,7 +206,7 @@
                                     </div>
                                     </li>
                                 <li class="btn-cta"><a routerLink="../patient-profile-edit"><span>Edit Profile</span></a></li>
-                                <li class="btn-cta"><a routerLink="../hospital-login"><span>Logout</span></a></li>
+                                <li class="btn-cta"><a (click)="logOut()"><span>Logout</span></a></li>
                             </ul>
                         </div>
                     </div>

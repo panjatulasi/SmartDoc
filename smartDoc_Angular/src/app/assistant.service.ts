@@ -52,6 +52,7 @@ export class AssistantService {
     formData.append('report', fileToUpload, fileToUpload.name);
     formData.append('userName', fileForm.userName);
     formData.append('date', fileForm.date);
+    formData.append('id',fileForm.id);
     formData.append('description', fileForm.description);
 
 

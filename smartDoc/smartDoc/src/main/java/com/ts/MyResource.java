@@ -282,7 +282,7 @@ public class MyResource {
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public int uploadImage(@FormDataParam("report") InputStream fileInputStream,@FormDataParam("report") FormDataContentDisposition
-			formDataContentDisposition, @FormDataParam("userName") String userName,@FormDataParam("description") String description, @FormDataParam("date") java.sql.Date date) throws IOException {
+			formDataContentDisposition, @FormDataParam("userName") String userName,@FormDataParam("id") String id,@FormDataParam("description") String description, @FormDataParam("date") java.sql.Date date) throws IOException {
 		System.out.println("Inside Upload");
 		int read = 0;
 		byte[] bytes = new byte[1024];
@@ -292,8 +292,9 @@ public class MyResource {
 
 		String pathArr[] = path.split("/WEB-INF/classes/");
 		System.out.println("Path array"+pathArr[0]);
+		String str=id+"_0_"+formDataContentDisposition.getFileName();
 
-		FileOutputStream out = new FileOutputStream(new File(pathArr[0]+"/image/", formDataContentDisposition.getFileName()));
+		FileOutputStream out = new FileOutputStream(new File(pathArr[0]+"/image/", str));
 
 
 		while((read = fileInputStream.read(bytes)) != -1){	
@@ -307,7 +308,8 @@ public class MyResource {
 		reports.setUserName(userName);
 		reports.setDate(date);
 		reports.setDescription(description);
-		reports.setReport(formDataContentDisposition.getFileName());
+		System.out.println("Myresource FileName"+str);
+		reports.setReport(str);
 		ReportsDao reportDao = new ReportsDao();
 		return reportDao.addReport(reports);
 	}
@@ -321,6 +323,17 @@ public class MyResource {
 		List <Reports> reportsList = reportsDao.getAllReports(userName);
 
 		return reportsList;
+	}
+	@Path("getMaxId")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Object> getMaxId() {
+		System.out.println("CAME to maxId");
+		Reports reports = new Reports();
+		ReportsDao reportsDao = new ReportsDao();
+		List<Object> id = reportsDao.getMaxId();
+
+		return id;
 	}
 	@Path("updateAssistant")
 	@PUT

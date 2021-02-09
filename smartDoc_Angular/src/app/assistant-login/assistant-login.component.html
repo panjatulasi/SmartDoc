@@ -20,6 +20,7 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
+	<meta charset = "UTF-8" />
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
@@ -64,13 +65,13 @@
 			
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
-					<div id="gtco-logo"><a routerLink="../">SmartDoc</a></div>
+					<div id="gtco-logo"><a (click)="logOut()">SmartDoc</a></div>
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
                         <li class="btn-cta current"><a routerLink="../doctor-login"><span>Doctor</span></a></li>
                         <li class="btn-cta current"><a routerLink="../assistant-login"><span>Assistant</span></a></li>
-						<li class="btn-cta current"><a routerLink="../pharmacist-login"><span>Pharmacist</span></a></li>
+						<!-- <li class="btn-cta current"><a routerLink="../pharmacist-login"><span>Pharmacist</span></a></li> -->
 					</ul>	
 				</div>
 			</div>
@@ -99,12 +100,12 @@
 											<form #loginForm="ngForm" class="form-group" (ngSubmit)="loginSubmit(loginForm.value)" validate>
 												<div class="row form-group">
 													<div class="col-md-12">
-                                                        <label>Email*</label>
+                                                        <label>Email</label>
                                                         <input type="email" class="form-control" name="userName" value="userName" ngModel #userName="ngModel" required
-                                                 placeholder="email">
+                                                 placeholder="Email">
 													</div>
 													<div class="col-md-12">
-														<label>Password*</label>
+														<label>Password</label>
 														<input type="password" class="form-control" placeholder="Password"  value="password" name="password" ngModel #password="ngModel" required >
                                                 	</div>
 												</div>
@@ -137,7 +138,6 @@
 	</header>
 	
 	</div>
-	
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->

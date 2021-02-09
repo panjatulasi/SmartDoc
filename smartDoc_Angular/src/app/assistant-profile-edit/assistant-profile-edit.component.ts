@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthServiceService } from '../auth-service.service';
 import {AssistantService} from './../assistant.service';
 declare var jQuery: any;
 
@@ -12,7 +14,7 @@ export class AssistantProfileEditComponent implements OnInit {
   assistant: any;
   editObject: any;
   userName1: String;
-  constructor(private service: AssistantService) {
+  constructor(private router: Router,private service: AssistantService,private service1: AuthServiceService) {
   this.editObject = {assistantId:'', assistantName: '', userName: '' ,  mobileNumber: '', password: ''};
   }
 
@@ -25,14 +27,25 @@ export class AssistantProfileEditComponent implements OnInit {
     this.editObject = assistant;
      jQuery('#assistantModel').modal('show');
   }
+  logOut(): void{
+    console.log("From SmartDoc");
+    this.service1.setHospitalLoggedOut();
+    this.service1.setAssistantLoggedOut();
+    this.router.navigate(['../hospital-login']);
+  }
   updateAssistant() {
     console.log("Inside Update in VS"+this.editObject);
+    if(this.editObject.assistantName =='' ||this.editObject.mobileNumber=='')
+    alert("Please enter all the fields")
+    else{
+      this.editObject.assistantName=this.editObject.assistantName[0].toUpperCase() + this.editObject.assistantName.slice(1);
     this.service.updateAssistant(this.editObject).subscribe((result: any) => { 
       if(result === 0){
         alert("Update failed -_-");
       } 
       else{
         alert("Update Successful");}});
+      }
     
   }
 

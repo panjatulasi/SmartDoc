@@ -2,6 +2,7 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppointmentServiceService } from '../appointment-service.service';
+import { AuthServiceService } from '../auth-service.service';
 import { PatientService } from '../patient.service';
 
 @Component({
@@ -15,12 +16,17 @@ export class SearchByUserNameComponent implements OnInit {
   userName:any;
   appointmentsDup:any;
   x:any;
-  constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService) { 
+  constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService,private service2: AuthServiceService) { 
     this.x = 0;
     //this.userName='';
   }
 
   ngOnInit() {
+  }
+  logOut(): void{
+    console.log("From SmartDoc");
+    this.service2.setDoctorLoggedOut();
+    this.router.navigate(['../hospital-login']);
   }
   viewReport(userName){
     localStorage.setItem('showUserName',userName);
@@ -32,7 +38,7 @@ export class SearchByUserNameComponent implements OnInit {
     this.service.getAppointmentsByUserName(this.userName).subscribe((result: any) => {
       console.log(result); this.appointmentsDup = result;
       for(var i=0;i<this.appointmentsDup.length;i++){
-        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date).toISOString().slice(0,10);
+        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date+86400000).toISOString().slice(0,10);
       }
       this.appointments=this.appointmentsDup;
      });

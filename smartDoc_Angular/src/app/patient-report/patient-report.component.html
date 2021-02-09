@@ -196,7 +196,7 @@
             <div class="gtco-container">
                 <div class="row">
                     <div class="col-sm-4 col-xs-12">
-                        <div id="gtco-logo"><a routerLink="../">SmartDoc</a></div>
+                        <div id="gtco-logo"><a (click)="logOut()">SmartDoc</a></div>
                     </div>
                     <div class="col-xs-6 text-right menu-1">
                         <ul>
@@ -214,7 +214,7 @@
                                 </div>
                                 </li>
                             <li class="btn-cta"><a routerLink="../patient-profile-edit"><span>Edit Profile</span></a></li>
-                            <li class="btn-cta"><a routerLink="../hospital-login"><span>Logout</span></a></li>
+                            <li class="btn-cta"><a (click)="logOut()"><span>Logout</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -230,7 +230,7 @@
                             style="width:100%;height:180px;background-color: rgba(0,0,0,0.5);">
                             <h5 style="color:whitesmoke;">Date: {{report.date}}</h5>
                             <h5 class="example" >Description: {{report.description}}</h5>
-                            <a href="http://localhost:8080/smartDoc/image/{{report.report}}">{{report.report}}</a>
+                            <a href="http://localhost:8080/smartDoc/image/{{report.report}}">{{report.name}}</a>
                         </div>                   
                 </div>
             </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppointmentServiceService } from '../appointment-service.service';
 import { AssistantService } from '../assistant.service';
+import { AuthServiceService } from '../auth-service.service';
 import { PatientService } from '../patient.service';
 
 @Component({
@@ -21,13 +22,25 @@ export class UploadReportComponent implements OnInit {
   date: any;
   today: any;
   description:any;
-  constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService,private service2: AssistantService) {
+  maxId:any;
+
+  constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService,private service2: AssistantService,private service3: AuthServiceService) {
     this.today=new Date().toISOString().slice(0,10); 
     this.x = 0;
     this.userName='';
   }
+  logOut(): void{
+    console.log("From SmartDoc");
+    this.service3.setAssistantLoggedOut();
+    this.router.navigate(['../hospital-login']);
+  }
 
   ngOnInit() {
+    this.service.getMaxId().subscribe((result: any) => {
+      console.log(result);
+      this.maxId=result[0]+1;
+      console.log(this.maxId);
+    });
   }
   model;
   select(d){
@@ -39,7 +52,7 @@ export class UploadReportComponent implements OnInit {
     this.service.getAppointmentsByUserName(this.userName).subscribe((result: any) => {
       console.log(result); this.appointmentsDup = result;
       for(var i=0;i<this.appointmentsDup.length;i++){
-        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date).toISOString().slice(0,10);
+        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date+86400000).toISOString().slice(0,10);
       }
       this.appointments=this.appointmentsDup;
      });
@@ -61,6 +74,7 @@ export class UploadReportComponent implements OnInit {
     
   }
   handleFileInput(file: FileList){
+    console.log(file.item(0));
     this.fileToUpload = file.item(0);
     console.log(this.fileToUpload.name);
     this.reader = new FileReader();
@@ -71,11 +85,15 @@ export class UploadReportComponent implements OnInit {
   }
   
   OnSubmit(fileForm: any) {
+    if(this.date =='' ||this.description==null||this.fileToUpload==null )
+    alert("please enter all fields");
+    else {
     fileForm.userName = this.userName;
     fileForm.date = this.date;
     fileForm.description=this.description;
-    console.log(fileForm);
-    console.log(this.fileToUpload);
+    fileForm.id=this.maxId;
+    console.log("File Form"+fileForm);
+    console.log("FileToUplaod="+this.fileToUpload);
     this.service2.uploadImage(fileForm, this.fileToUpload).subscribe((result:any)=>{
       if(result == 1){
       alert("Report Uploaded Successfully :)");
@@ -88,6 +106,7 @@ export class UploadReportComponent implements OnInit {
     }
     );
   }
+}
   refresh(){
     window.location.reload();
 }

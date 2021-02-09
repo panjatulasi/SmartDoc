@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppointmentServiceService } from '../appointment-service.service';
+import { AuthServiceService } from '../auth-service.service';
 import { PatientService } from '../patient.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class DoctorAppointmentComponent implements OnInit {
   subject:any;
   d:any;
   appointmentsDup:any;
-  constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService) { 
+  constructor(private router: Router,private service: AppointmentServiceService,private service1: PatientService,private service2: AuthServiceService) { 
     //this.editObject={appointmentId:'',patientUserName:'',department:'',date:'',time:'',reason:'',accept:''};
   }
 
@@ -25,15 +26,19 @@ export class DoctorAppointmentComponent implements OnInit {
     this.service.getAllAppointments(localStorage.getItem('department')).subscribe((result: any) => { console.log(result); this.appointmentsDup = result;
 
       for(var i=0;i<this.appointmentsDup.length;i++){
-        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date).toISOString().slice(0,10);
+        this.appointmentsDup[i].date=new Date(this.appointmentsDup[i].date+86400000).toISOString().slice(0,10);
       }
       this.appointments=this.appointmentsDup;
 
     });
-    console.log(this.appointments);
-    this.d=new Date(1611253800000);
-    console.log(this.d+"Date");
+    
 
+  }
+  logOut(): void{
+    console.log("From SmartDoc");
+    this.service2.setHospitalLoggedOut();
+    this.service2.setDoctorLoggedOut();
+    this.router.navigate(['../hospital-login']);
   }
   searchByUserName(){
     console.log(this.userName);

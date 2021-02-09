@@ -17,22 +17,22 @@ public class AppointmentsDao {
 		return HibernateTemplate.addObject(appointments);
 	}
 	public List<Appointments> getAllAppointments(String department) {
-		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where department='"+department+"' and accept=''");
+		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where department='"+department+"' and accept='' order by date asc");
 		System.out.println("Inside All Employees ..."+appointments);
 		return appointments;
 	}
 	public List<Appointments> getUpcomingAppointments(String department) {
-		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where department='"+department+"' and status is NULL and accept='Yes'");
+		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where department='"+department+"' and status is NULL and accept='Yes' order by date asc");
 		System.out.println("Inside Doctor Upcoming Appointments ..."+appointments);
 		return appointments;
 	}
 	public List<Appointments> getAppointmentsByUserName(String userName) {
-		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where patientUserName='"+userName+"' and status is not NULL");
+		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where patientUserName='"+userName+"' and status is not NULL order by date desc");
 		System.out.println("Inside getAppointmentsByUserName used in previous Appointments  ..."+appointments);
 		return appointments;
 	}
 	public List<Appointments> getAppointmentsByUserNameWithNullStatus(String userName) {
-		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where patientUserName='"+userName+"' and status is NULL");
+		List<Appointments> appointments=(List)HibernateTemplate.getObjectListByQuery("From Appointments where patientUserName='"+userName+"' and status is NULL order by date asc");
 		System.out.println("Inside getAppointmentsByUserName used in patient Upcoming Appointments  ..."+appointments);
 		return appointments;
 	}
