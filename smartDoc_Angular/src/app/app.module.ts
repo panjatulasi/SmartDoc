@@ -34,33 +34,60 @@ import { AssistantAuthGuard } from './assistant-auth.guard';
 import { DoctorAuthGuard } from './doctor-auth.guard';
 import { PatientAuthGuard } from './patient-auth.guard';
 
+
 const appRoot: Routes = [
-  {path: 'patient-appointment',canActivate: [PatientAuthGuard], component: PatientAppointmentComponent},
-  {path: 'doctor-appointment',canActivate: [AuthGuardGuard,DoctorAuthGuard], component: DoctorAppointmentComponent},
+  // {path: 'patient-appointment',canActivate: [PatientAuthGuard], component: PatientAppointmentComponent},
+  // {path: 'doctor-appointment',canActivate: [AuthGuardGuard,DoctorAuthGuard], component: DoctorAppointmentComponent},
+  //  {path: 'hospital-login', component: HospitalLoginComponent},
+  //  {path: 'search-by-user-name',canActivate: [AuthGuardGuard,DoctorAuthGuard], component: SearchByUserNameComponent},
+  //  {path: 'upcoming-appointments', canActivate: [AuthGuardGuard,DoctorAuthGuard],component: UpcomingAppointmentsComponent},
+  //  {path: 'previous-records',canActivate: [AuthGuardGuard,DoctorAuthGuard], component: PreviousRecordsComponent},
+  //  {path: 'upload-report', canActivate: [AuthGuardGuard,AssistantAuthGuard],component: UploadReportComponent},
+  //  {path: 'patient-previous',canActivate: [PatientAuthGuard], component: PatientPreviousComponent},
+  //  {path: 'patient-appointment-status',canActivate: [PatientAuthGuard], component: PatientAppointmentStatusComponent},
+  //  {path: 'view-report',canActivate: [AuthGuardGuard,DoctorAuthGuard], component: ViewReportComponent},
+  //  {path: 'patient-report',canActivate: [PatientAuthGuard], component: PatientReportComponent},
+  //  //{path: '', component: SearchByUserNameComponent},
+  //   {path: '', component: HospitalLoginComponent},
+  // {path: 'patient-login',component: PatientLoginComponent},
+  // {path: 'pharmacist-login',canActivate: [AuthGuardGuard], component: PharmacistLoginComponent},
+  // {path: 'doctor-login',canActivate: [AuthGuardGuard],canLoad:[AuthGuardGuard], component: DoctorLoginComponent},
+  // {path: 'assistant-login',canActivate: [AuthGuardGuard], component: AssistantLoginComponent},
+  // {path: 'patient-register', component: PatientRegisterComponent},
+  // {path: 'pharmacist-register',canActivate: [AuthGuardGuard], component: PharmacistRegisterComponent},
+  // {path: 'doctor-register',canActivate: [AuthGuardGuard], component: DoctorRegisterComponent},
+  // {path: 'assistant-register',canActivate: [AuthGuardGuard], component: AssistantRegisterComponent},
+  // {path: 'patient-profile-edit',canActivate: [PatientAuthGuard],component: PatientProfileEditComponent},
+  // {path: 'assistant-profile-edit',canActivate: [AuthGuardGuard,AssistantAuthGuard],component: AssistantProfileEditComponent},
+  // {path: 'doctor-profile-edit',canActivate: [AuthGuardGuard,DoctorAuthGuard],component: DoctorProfileEditComponent},
+
+  // {path: 'pharmacist-profile-edit',canActivate: [AuthGuardGuard],component: PharmacistProfileEditComponent}
+  {path: 'patient-appointment', component: PatientAppointmentComponent},
+  {path: 'doctor-appointment', component: DoctorAppointmentComponent},
    {path: 'hospital-login', component: HospitalLoginComponent},
-   {path: 'search-by-user-name',canActivate: [AuthGuardGuard,DoctorAuthGuard], component: SearchByUserNameComponent},
-   {path: 'upcoming-appointments', canActivate: [AuthGuardGuard,DoctorAuthGuard],component: UpcomingAppointmentsComponent},
-   {path: 'previous-records',canActivate: [AuthGuardGuard,DoctorAuthGuard], component: PreviousRecordsComponent},
-   {path: 'upload-report', canActivate: [AuthGuardGuard,AssistantAuthGuard],component: UploadReportComponent},
-   {path: 'patient-previous',canActivate: [PatientAuthGuard], component: PatientPreviousComponent},
-   {path: 'patient-appointment-status',canActivate: [PatientAuthGuard], component: PatientAppointmentStatusComponent},
-   {path: 'view-report',canActivate: [AuthGuardGuard,DoctorAuthGuard], component: ViewReportComponent},
-   {path: 'patient-report',canActivate: [PatientAuthGuard], component: PatientReportComponent},
+   {path: 'search-by-user-name', component: SearchByUserNameComponent},
+   {path: 'upcoming-appointments', component: UpcomingAppointmentsComponent},
+   {path: 'previous-records', component: PreviousRecordsComponent},
+   {path: 'upload-report', component: UploadReportComponent},
+   {path: 'patient-previous',component: PatientPreviousComponent},
+   {path: 'patient-appointment-status', component: PatientAppointmentStatusComponent},
+   {path: 'view-report',component: ViewReportComponent},
+   {path: 'patient-report', component: PatientReportComponent},
    //{path: '', component: SearchByUserNameComponent},
     {path: '', component: HospitalLoginComponent},
   {path: 'patient-login',component: PatientLoginComponent},
-  {path: 'pharmacist-login',canActivate: [AuthGuardGuard], component: PharmacistLoginComponent},
-  {path: 'doctor-login',canActivate: [AuthGuardGuard], component: DoctorLoginComponent},
-  {path: 'assistant-login',canActivate: [AuthGuardGuard], component: AssistantLoginComponent},
+  {path: 'pharmacist-login',  component: PharmacistLoginComponent},
+  {path: 'doctor-login', component: DoctorLoginComponent},
+  {path: 'assistant-login', component: AssistantLoginComponent},
   {path: 'patient-register', component: PatientRegisterComponent},
-  {path: 'pharmacist-register',canActivate: [AuthGuardGuard], component: PharmacistRegisterComponent},
-  {path: 'doctor-register',canActivate: [AuthGuardGuard], component: DoctorRegisterComponent},
-  {path: 'assistant-register',canActivate: [AuthGuardGuard], component: AssistantRegisterComponent},
-  {path: 'patient-profile-edit',canActivate: [PatientAuthGuard],component: PatientProfileEditComponent},
-  {path: 'assistant-profile-edit',canActivate: [AuthGuardGuard,AssistantAuthGuard],component: AssistantProfileEditComponent},
-  {path: 'doctor-profile-edit',canActivate: [AuthGuardGuard,DoctorAuthGuard],component: DoctorProfileEditComponent},
+  {path: 'pharmacist-register', component: PharmacistRegisterComponent},
+  {path: 'doctor-register',  component: DoctorRegisterComponent},
+  {path: 'assistant-register',  component: AssistantRegisterComponent},
+  {path: 'patient-profile-edit', component: PatientProfileEditComponent},
+  {path: 'assistant-profile-edit', component: AssistantProfileEditComponent},
+  {path: 'doctor-profile-edit', component: DoctorProfileEditComponent},
 
-  {path: 'pharmacist-profile-edit',canActivate: [AuthGuardGuard],component: PharmacistProfileEditComponent}
+  {path: 'pharmacist-profile-edit', component: PharmacistProfileEditComponent}
 
 
 
@@ -94,7 +121,7 @@ const appRoot: Routes = [
   ],
   imports: [
 
-BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot(appRoot)
+BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot(appRoot),
   ],
   providers: [AuthGuardGuard,AssistantAuthGuard,DoctorAuthGuard,PatientAuthGuard,{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
